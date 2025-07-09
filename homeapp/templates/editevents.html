@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f8; /* Light gray background for the body */
+            width: 100%;
+        }
+        .navbar {
+            background: linear-gradient(to right, #006769, #4B164C); 
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: white;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ecf0f1 !important; /* Light hover effect */
+        }
+        .sidebar {
+            height: 100vh;
+            background-color: #006769; /* Darker blue for the sidebar */
+            color: white;
+            padding-top: 20px;
+            position: fixed;
+            width: 250px;
+        }
+        .sidebar a {
+            color: white;
+            padding: 12px 20px;
+            display: block;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #2ecc71; /* Soft green on hover */
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .dashboard-card {
+            border-radius: 10px;
+            background-color: #fff; /* White background for the cards */
+        }
+        .card-body {
+            font-size: 18px;
+        }
+        .card-header {
+            font-size: 22px;
+            background-color: #3498db; /* Blue background for card headers */
+            color: white;
+        }
+        .dropdown-menu {
+            background-color: #2980b9; /* Dark blue dropdown */
+            padding: 10px 0; /* Add padding to ensure space for each item */
+            width: 190px; /* Set a fixed width for the dropdown */
+            
+        }
+        .dropdown-item {
+            color: white;
+            padding: 12px 10px;
+            font-size: 16px;
+        }
+        .dropdown-item:hover {
+            background-color: #2ecc71; /* Green hover effect */
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/adminindex/">MET'S Polytechnic Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                   
+                    <!-- Dropdown for Account -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">ADMIN-Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/addevents/">Create Events</a>
+        <a href="/admineventview/">Upcoming Events</a>
+        <a href="/adminevent_completed_view/">Completed Events</a>
+        <a href="/adminstaffallocate/">Assign Staff </a>
+        <a href="/adminassignedstaff/">Staff Assigned </a>
+        <a href="/adminjudgeallocate/">Judge for Events</a>
+        <a href="/adminvieweventplayer/">Student Participated</a>
+        <a href="/paymenthistoryadmin/">Payment Details</a>
+        <a href="/adminfeedbackview/">Student Feedback</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content" style="margin-top: 35px;">
+
+        <!-- Add more content as needed -->
+        {% if messages %}
+        <div class="bg-blue-500 text-white py-2 px-4 rounded mb-4">
+            {% for message in messages %}
+                <center><p style="color: green;">{{ message }}</p></center>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-md mt-12">
+        <h1 class="text-3xl font-bold text-center text-blue-500 mb-6">Update Event</h1>
+        
+        <!-- Event Creation Form -->
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+        
+            <!-- Event Category -->
+            <div class="mb-4">
+                <label for="event_category" class="block text-lg font-medium text-gray-700">Event Category</label>
+                <select id="event_category" name="event_category" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <option value="games" {% if event_categories.event_category == 'games' %} selected {% endif %}>Games</option>
+                    <option value="entertainment" {% if event_categories.event_category == 'entertainment' %} selected {% endif %}>Entertainment</option>
+                    <option value="food fest" {% if event_categories.event_category == 'food fest' %} selected {% endif %}>Food Fest</option>
+                    <option value="workshops" {% if event_categories.event_category == 'workshops' %} selected {% endif %}>Workshops</option>
+                </select>
+            </div>
+        
+            <!-- Event Version (Paid/Free) -->
+            <div class="mb-4">
+                <label for="version" class="block text-lg font-medium text-gray-700">Event Version</label>
+                <select id="version" name="version" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <option value="Free" {% if event_categories.version == 'Free' %} selected {% endif %}>Free</option>
+                    <option value="Paid" {% if event_categories.version == 'Paid' %} selected {% endif %}>Paid</option>
+                </select>
+            </div>
+        
+            <!-- Event Name -->
+            <div class="mb-4">
+                <label for="event_name" class="block text-lg font-medium text-gray-700">Event Name</label>
+                <input type="text" id="event_name" name="event_name" value="{{ event_categories.event_name }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
+        
+            <!-- Event Description -->
+            <div class="mb-4">
+                <label for="events_description" class="block text-lg font-medium text-gray-700">Event Description</label>
+                <textarea id="events_description" name="events_description" rows="4" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>{{ event_categories.events_description }}</textarea>
+            </div>
+        
+            <!-- Amount Field (Visible only if Paid) -->
+            <div class="mb-4" id="amountField" style="display: {% if event_categories.version == 'Paid' %} block {% else %} none {% endif %};">
+                <label for="amount" class="block text-lg font-medium text-gray-700">Amount (₹)</label>
+                <input type="number" id="amount" name="amount" value="{{ event_categories.amount }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+        
+            <!-- Event Image -->
+            <img src="{{ event_categories.image.url }}" alt="profile" width="60px">
+            <div class="mb-4">
+                <label for="image" class="block text-lg font-medium text-gray-700">Event Image</label>
+                <input type="file" id="image" name="image" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" accept="image/*">
+            </div>
+        
+            <!-- Event Dates -->
+            <div class="mb-4">
+                <label for="doe" class="block text-lg font-medium text-gray-700">Date of Event</label>
+                <input type="date" id="doe" name="doe" value="{{ event_categories.doe|date:'Y-m-d' }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
+        
+            <div class="mb-4">
+                <label for="rend" class="block text-lg font-medium text-gray-700">Registration End Date</label>
+                <input type="date" id="rend" name="rend" value="{{ event_categories.rend|date:'Y-m-d' }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" readonly>
+            </div>
+        
+            <div class="mb-4">
+                <label for="resultdate" class="block text-lg font-medium text-gray-700">Event Result Date</label>
+                <input type="date" id="resultdate" name="resultdate" value="{{ event_categories.resultdate|date:'Y-m-d' }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" readonly>
+            </div>
+        
+            <!-- Submit Button -->
+            <div class="mb-4">
+                <button type="submit" class="w-full px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Update Event</button>
+            </div>
+        
+        </form>
+        
+    </div>
+    <script>
+        // JavaScript to show/hide the amount field based on the event version (Paid/Free)
+        const versionSelect = document.getElementById('version');
+        const amountField = document.getElementById('amountField');
+
+        versionSelect.addEventListener('change', function() {
+            if (versionSelect.value === 'Paid') {
+                amountField.style.display = 'block';
+            } else {
+                amountField.style.display = 'none';
+            }
+        });
+
+        // Initially check if the event is Free or Paid
+        if (versionSelect.value === 'Free') {
+            amountField.style.display = 'none';
+        }
+        document.getElementById('doe').addEventListener('change', function() {
+            // Get the value of the 'doe' input field (the selected date)
+            let doeDate = new Date(this.value);
+    
+            // Subtract one day from the 'doe' date
+            doeDate.setDate(doeDate.getDate() - 1);
+    
+            // Format the date to the format YYYY-MM-DD (the format for an HTML date input)
+            let year = doeDate.getFullYear();
+            let month = (doeDate.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero
+            let day = doeDate.getDate().toString().padStart(2, '0'); // Add leading zero
+    
+            let rendDate = `${year}-${month}-${day}`;
+    
+            // Set the 'rend' (end date) field with the calculated date
+            document.getElementById('rend').value = rendDate;
+
+            doeDate.setDate(doeDate.getDate() + 11); // Add 10 days (after subtracting 1 for rend)
+
+            // Format the 'resultdate' to YYYY-MM-DD
+            year = doeDate.getFullYear();
+            month = (doeDate.getMonth() + 1).toString().padStart(2, '0');
+            day = doeDate.getDate().toString().padStart(2, '0');
+            let resultDate = `${year}-${month}-${day}`;
+    
+            // Set the 'resultdate' (10 days after the original 'doe') field
+            document.getElementById('resultdate').value = resultDate;
+        });
+    </script>
+
+
+        
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

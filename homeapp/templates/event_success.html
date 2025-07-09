@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Created Successfully</title>
+    </head>
+<body>
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+
+        <h1>Thank You</h1>
+        <p>Your Event has been successfully submitted.</p>
+
+        {% if ai_response %}
+        <div class="ai-response">
+            <h3>AI Suggestions:</h3>
+            <p>{{ ai_response }}</p>
+        </div>
+        {% endif %}
+
+        <a href="{% url 'adminindex' %}" class="btn btn-primary">Go Back to Homepage</a>
+        <a href="{% url 'addevents' %}" class="btn btn-secondary">Create Another Event</a>
+    </div>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>

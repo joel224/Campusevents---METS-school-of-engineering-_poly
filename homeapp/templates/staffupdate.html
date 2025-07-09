@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Staff Profile - KG College of Arts and Science</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .btn-update {
+            background-color: #007bff;
+            color: white;
+            width: 100%;
+        }
+
+        .btn-update:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/staffprofile/">MET'S Polytechnic DashBoard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Update Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout/">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Update Form -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form-container">
+                    <h3>Update Staff Profile</h3>
+
+                    <!-- Form for updating profile -->
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" value="{{ username }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="text" class="form-control" id="password" name="password" value="{{ password }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select class="form-control" id="gender" name="gender">
+                                <option value="Male" {% if gender == 'Male' %}selected{% endif %}>Male</option>
+                                <option value="Female" {% if gender == 'Female' %}selected{% endif %}>Female</option>
+                                <option value="Other" {% if gender == 'Other' %}selected{% endif %}>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="text" class="form-control" id="dob" name="dob" value="{{ dob }}" onfocus="(this.type='date')" required >
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ email }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <select class="form-control" id="department" name="department">
+                                <option value="Information Technology" {% if gender == 'Information Technology' %}selected{% endif %}>Information Technology</option>
+                                <option value="Computer_Science" {% if gender == 'Computer_Science' %}selected{% endif %}>Computer_Science</option>
+                                <option value="Computer_Technology" {% if gender == 'Computer_Technology' %}selected{% endif %}>Computer_Technology</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="designation">Designation</label>
+                            <select class="form-control" id="designation" name="designation">
+                                <option value="HOD" {% if gender == 'HOD' %}selected{% endif %}>HOD</option>
+                                <option value="Assistant_Professor" {% if gender == 'Assistant_Professor' %}selected{% endif %}>Assistant_Professor</option>
+                                <option value="Professor" {% if gender == 'Professor' %}selected{% endif %}>Professor</option>
+                            </select>
+                    
+                        <div class="form-group">
+                            <label for="mobile_no">Mobile Number</label>
+                            <input type="text" class="form-control" id="mobile_no" name="mobile_no" value="{{ mobile_no }}" required>
+                        </div>
+                        <div class="form-group">
+                           
+                            <img src="{{pic.url}}" alt="" width="100px" height="100px">
+                        </div>
+                        <div class="form-group">
+                            <input type="file" name="pic" id="imageUpload" accept="image/*" onchange="previewImage()" hidden>
+
+                            <!-- Custom Button to trigger file input -->
+                            <span style="display:flex;">
+                                <label for="imageUpload" class="btn btn-success" style="display:flex; height:32px;width:179px;justify-content:center;align-items:center">
+                                    Choose Image
+                                </label>
+                            
+                                <!-- Image Preview -->
+                                <img id="imagePreview" name="pic" class="image-preview mt-2" src="" alt="" style="margin-left:25px" height="60px">
+                            </span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-update">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function previewImage() {
+            var file = document.getElementById("imageUpload").files[0];
+            var reader = new FileReader();
+            
+            reader.onloadend = function() {
+                var imagePreview = document.getElementById("imagePreview");
+                imagePreview.src = reader.result;
+            }
+    
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>

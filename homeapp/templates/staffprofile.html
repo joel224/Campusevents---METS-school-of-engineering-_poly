@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Profile - KG College of Arts and Science</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .profile-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .profile-card h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-info {
+            margin-bottom: 15px;
+        }
+
+        .profile-info label {
+            font-weight: bold;
+        }
+
+        .profile-info p {
+            margin: 0;
+        }
+
+        .btn-edit {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background-color: #0056b3;  
+        }
+
+        .profile-picture img {
+            width: 80px;  /* Size of the profile picture */
+            height: 80px; /* Make the profile picture square */
+            object-fit: cover; /* Ensures the image covers the entire area */
+            margin-bottom: 20px; /* Space below the profile picture */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/staffindex/">KG College of Science & Commerce</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="">Staff-Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout/">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Information -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!-- Profile Card -->
+                <div class="profile-card text-left">
+                    <!-- Profile Picture -->
+                    <div class="profile-picture text-center">
+                        <img src="{{ pic.url }}" alt="Profile Picture" class="rounded-circle ">
+                    </div>
+                    
+                    
+                    {% if messages %}
+                        <div class="alert alert-success">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    <!-- Profile Details -->
+                    <div class="profile-info">
+                        <label for="username">Username:</label>
+                        <p id="username">{{ username }}</p>
+                    </div>
+                    <div class="profile-info">
+                        <label for="email">Email:</label>
+                        <p id="email">{{ email }}</p>
+                    </div>
+                    <div class="profile-info">
+                        <label for="gender">Gender:</label>
+                        <p id="gender">{{ gender }}</p>
+                    </div>
+                    <div class="profile-info">
+                        <label for="dob">Date of Birth:</label>
+                        <p id="dob">{{ dob }}</p>
+                    </div>
+                    <div class="profile-info">
+                        <label for="department">Department:</label>
+                        <p id="department">{{ department }}</p>
+                    </div>
+                    <div class="profile-info">
+                        <label for="designation">Designation:</label>
+                        <p id="designation">{{ designation }}</p>
+                    </div>
+                    <div class="profile-info">
+                        <label for="mobile_no">Mobile Number:</label>
+                        <p id="mobile_no">{{ mobile_no }}</p>
+                    </div>
+    
+ <!-- Edit Profile Button -->
+ <div class="text-center">
+    <a href="/staffprofileupdate/" class="btn btn-edit">Edit Profile</a>
+</div>
+</div>
+</div>
+</div>
+</div> 
+   
+
+</div>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

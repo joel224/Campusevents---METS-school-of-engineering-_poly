@@ -1,0 +1,280 @@
+<!-- confirmdelete.html -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judge Dashboard</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f8; /* Light gray background for the body */
+            width: 100%;
+        }
+        .navbar {
+            background: linear-gradient(to right, #006769, #4B164C); 
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: white;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ecf0f1 !important; /* Light hover effect */
+        }
+        .sidebar {
+            height: 100vh;
+            background: #006769; 
+            color: white;
+            padding-top: 20px;
+            position: fixed;
+            width: 250px;
+        }
+        .sidebar a {
+            color: white;
+            padding: 12px 20px;
+            display: block;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #2ecc71; /* Soft green on hover */
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .dashboard-card {
+            border-radius: 10px;
+            background-color: #fff; /* White background for the cards */
+        }
+        .card-body {
+            font-size: 18px;
+        }
+        .card-header {
+            font-size: 22px;
+            background-color: #003254; /* Blue background for card headers */
+            color: white;
+        }
+        .dropdown-menu {
+            background-color: #0a5e97; /* Dark blue dropdown */
+            padding: 10px 0; /* Add padding to ensure space for each item */
+            width: 190px; /* Set a fixed width for the dropdown */
+            
+        }
+        .dropdown-item {
+            color: white;
+            padding: 12px 10px;
+            font-size: 16px;
+        }
+        .dropdown-item:hover {
+            background-color: #2ecc71; /* Green hover effect */
+        }
+        .btn-a{
+            background-color: #003254;
+            color: White;
+        }
+        .btn-a:hover{
+            background-color: #005719;
+            color: gold;
+        }
+        .profile-container {
+            background-color: #f4f6f8;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .btn-edit {
+            background-color: #003254;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .btn-edit:hover {
+            background-color: #005719;
+        }
+        .profile-container {
+            background-color: #f4f6f8;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .btn-save {
+            background-color: #003254;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .btn-save:hover {
+            background-color: #005719;
+        }
+
+        .confirmation-box {
+            text-align: center;
+            margin-top: 46px;;
+        }
+        
+        h2 {
+            font-size: 24px;
+            color: #f33131;
+            margin-bottom: 20px;
+        }
+        
+        /* Staff details */
+        .staff-details p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .staff-details strong {
+            color: #333;
+        }
+        
+        /* Buttons container */
+        .buttons {
+            margin-top: 20px;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        /* Delete button */
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+        
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Cancel button */
+        .btn-cancel {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-cancel:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="/judgeindex/">MET'S Polytechnic Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                   
+                    <!-- Dropdown for Account -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/judgeprofile/">Profile</a></li>
+                            <li><a class="dropdown-item" href="/judgedelete/">Delete Account</a></li><hr style="color: #76c8ff;margin:0px;">
+                            <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Judge-Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/judgestudentview/">Student Details</a>
+        <a href="/judgestaffview/">Staff Details</a>
+        <a href="/judge/assigned_events/">Events Assigned</a>
+        <a href="/resultforjudge/">Publish Result</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content" style="margin-top: 43px; ">
+        <div class="confirmation-box">
+            <h2>Are you sure you want to delete Account as judge?</h2>
+            
+            <div class="staff-details">
+                <p><strong>Name:</strong> {{ staff.username }}</p>
+                <p><strong>Email:</strong> {{ staff.email }}</p>
+                <p><strong>Gender:</strong> {{ staff.gender }}</p>
+                <p><strong>Date of Birth:</strong> {{ staff.dob }}</p>
+                <p><strong>Qualification:</strong> {{ staff.qualification }}</p>
+                <p><strong>Experience:</strong> {{ staff.experience }}</p>
+            </div>
+
+            <div class="buttons">
+                <a href="{% url 'judgeconfirmdelete' staff.id %}" class="btn-delete">Yes, Delete</a>
+                <a href="/judgeindex/" class="btn-cancel">Cancel</a>
+            </div>
+        </div>
+        </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+
+<!-- Add Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+   
+</body>
+</html>
+
+
+
+
+
+
+
+
+

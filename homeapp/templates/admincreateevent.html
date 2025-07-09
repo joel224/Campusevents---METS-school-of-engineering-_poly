@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f8; /* Light gray background for the body */
+            width: 100%;
+        }
+        .navbar {
+            background: linear-gradient(to right, #006769, #4B164C);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: white;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ecf0f1 !important; /* Light hover effect */
+        }
+        .sidebar {
+            height: 100vh;
+            background-color: #006769; /* Darker blue for the sidebar */
+            color: white;
+            padding-top: 40px;
+            position: fixed;
+            width: 250px;
+        }
+        .sidebar a {
+            color: white;
+            padding: 12px 20px;
+            display: block;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #2ecc71; /* Soft green on hover */
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .dashboard-card {
+            border-radius: 10px;
+            background-color: #fff; /* White background for the cards */
+        }
+        .card-body {
+            font-size: 18px;
+        }
+        .card-header {
+            font-size: 22px;
+            background-color: #3498db; /* Blue background for card headers */
+            color: white;
+        }
+        .dropdown-menu {
+            background-color: #2980b9; /* Dark blue dropdown */
+            padding: 10px 0; /* Add padding to ensure space for each item */
+            width: 190px; /* Set a fixed width for the dropdown */
+
+        }
+        .dropdown-item {
+            color: white;
+            padding: 12px 10px;
+            font-size: 16px;
+        }
+        .dropdown-item:hover {
+            background-color: #2ecc71; /* Green hover effect */
+        }
+        #aiFeatures {
+            display: none; /* Initially hide AI features */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/adminindex/">MET'S Polytechnic Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">ADMIN-Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sidebar">
+        <a href="/addevents/">Create Events</a>
+        <a href="/admineventview/">Upcoming Events</a>
+        <a href="/adminevent_completed_view/">Completed Events</a>
+        <a href="/adminstaffallocate/">Assign Staff </a>
+        <a href="/adminassignedstaff/">Staff Assigned </a>
+        <a href="/adminjudgeallocate/">Judge for Events</a>
+        <a href="/adminvieweventplayer/">Student Participated</a>
+        <a href="/paymenthistoryadmin/">Payment Details</a>
+        <a href="/adminfeedbackview/">Student Feedback</a>
+    </div>
+    <div class="content" style="margin-top: 35px;">
+        <div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-md mt-12 relative">
+            <button id="aiAssistBtn" class="absolute top-4 right-4 px-4 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                </svg>
+                AI Assist
+            </button>
+
+            <h1 class="text-3xl font-bold text-center text-blue-500">Create an Event</h1>
+
+            {% if message %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+
+            <form id="createEventForm" method="POST" action="{% url 'create_event' %}" enctype="multipart/form-data" class="mt-8">
+                {% csrf_token %}
+            
+                <div class="mb-4">
+                    <label for="event_category" class="block text-lg font-medium text-gray-700">Event Category</label>
+                    <select id="event_category" name="event_category" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="games">Games</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="seminar">Seminar</option>
+                        <option value="workshops">Workshops</option>
+                    </select>
+                </div>
+            
+                <div class="mb-4">
+                    <label for="version" class="block text-lg font-medium text-gray-700">Event Version</label>
+                    <select id="version" name="version" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="Free">Free</option>
+                        <option value="Paid">Paid</option>
+                    </select>
+                </div>
+            
+                <div class="mb-4">
+                    <label for="event_name" class="block text-lg font-medium text-gray-700">Event Name</label>
+                    <input type="text" id="event_name" name="event_name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                </div>
+            
+                <div class="mb-4">
+                    <label for="events_description" class="block text-lg font-medium text-gray-700">Event Description</label>
+                    <textarea id="events_description" name="events_description" rows="4" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required></textarea>
+                </div>
+            
+                <div class="mb-4" id="amountField">
+                    <label for="amount" class="block text-lg font-medium text-gray-700">Amount (₹)</label>
+                    <input type="number" id="amount" name="amount" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+            
+                <div class="mb-4">
+                    <label for="image" class="block text-lg font-medium text-gray-700">Event Image</label>
+                    <input type="file" id="image" name="image" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" accept="image/*" required>
+                </div>
+            
+                <div class="mb-4">
+                    <label for="doe" class="block text-lg font-medium text-gray-700">Date of Event</label>
+                    <input type="date" id="doe" name="doe" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required onchange="checkDateConflict(this.value)">
+                </div>
+            
+                <div class="mb-4">
+                    <label for="rend" class="block text-lg font-medium text-gray-700">Registration End Date</label>
+                    <input type="date" id="rend" name="rend" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" readonly>
+                </div>
+            
+                <div class="mb-4">
+                    <label for="resultdate" class="block text-lg font-medium text-gray-700">Event Result Date</label>
+                    <input type="date" id="resultdate" name="resultdate" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" readonly>
+                </div>
+            
+                <div id="aiFeatures">
+                    <div class="mb-4">
+                        <label for="participants" class="block text-lg font-medium text-gray-700">Participants:</label>
+                        <input type="text" id="participants" name="participants" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+            
+                    <div class="mb-4">
+                        <label for="duration" class="block text-lg font-medium text-gray-700">Duration:</label>
+                        <input type="text" id="duration" name="duration" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+            
+                    <div class="mb-4">
+                        <label for="promotion" class="block text-lg font-medium text-gray-700">Promotion:</label>
+                        <input type="text" id="promotion" name="promotion" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+            
+                    <div class="mb-4">
+                        <label for="time" class="block text-lg font-medium text-gray-700">Time:</label>
+                        <input type="text" id="time" name="time" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+            
+                    <div class="mb-4 space-y-2">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="night" name="options" value="night" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="night" class="ml-2 block text-sm text-gray-700">Night</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="day" name="options" value="day" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="day" class="ml-2 block text-sm text-gray-700">Day</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="eventCheckbox" name="options" value="event" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="eventCheckbox" class="ml-2 block text-sm text-gray-700">Event</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="check" name="options" value="check" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="check" class="ml-2 block text-sm text-gray-700">Check</label>
+                        </div>
+                    </div>
+            
+                    <div id="eventDetails" class="mb-4">
+                        <label for="budget" class="block text-lg font-medium text-gray-700">Budget:</label>
+                        <input type="number" id="budget" name="budget" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                </div>
+            
+                <div class="mb-4">
+                    <button type="submit" class="w-full px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Create Event</button>
+                </div>
+                <div class="mb-4">
+                    <button type="reset" class="w-full px-4 py-2 bg-red-100 text-white rounded-full hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1">Reset</button>
+                </div>
+            </form>
+            <div id="dateConflictAlert" class="mt-4 p-4 bg-red-50 rounded-md hidden">
+                <h3 class="text-xl font-semibold text-red-700">⚠️ Date Conflicts Detected</h3>
+                <ul id="conflictMessagesList" class="mt-2 text-red-800 list-disc list-inside">
+                    </ul>
+                </div>
+            
+            <div id="aiDateSuggestionsAlert" class="mt-4 p-4 bg-blue-50 rounded-md hidden">
+                <h3 class="text-xl font-semibold text-blue-700">📅 Suggested Alternative Dates</h3>
+                <div id="aiDateSuggestions" class="mt-2 text-blue-800 whitespace-pre-line"></div>
+            </div>
+            
+            <div id="calendarInfoAlert" class="mt-4 p-4 bg-green-50 rounded-md hidden">
+                <h3 class="text-xl font-semibold text-green-700">Calendar Information</h3>
+                <p id="calendarInfoText" class="mt-2 text-green-800"></p>
+            </div>
+            
+            <script>
+                function checkDateConflict(selectedDate) {
+                    // Clear previous alerts and messages
+                    const dateConflictAlert = document.getElementById('dateConflictAlert');
+                    const conflictMessagesList = document.getElementById('conflictMessagesList');
+                    const aiDateSuggestionsAlert = document.getElementById('aiDateSuggestionsAlert');
+                    const aiDateSuggestions = document.getElementById('aiDateSuggestions');
+                    const calendarInfoAlert = document.getElementById('calendarInfoAlert');
+                    const calendarInfoText = document.getElementById('calendarInfoText');
+            
+                    conflictMessagesList.innerHTML = ''; // Clear old list items
+                    dateConflictAlert.classList.add('hidden');
+                    aiDateSuggestionsAlert.classList.add('hidden');
+                    calendarInfoAlert.classList.add('hidden');
+                    calendarInfoText.textContent = ''; // Clear old text
+            
+                    fetch('/check_date_conflict/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                        },
+                        body: `doe=${selectedDate}`
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            // Handle HTTP errors (like 400, 500)
+                            return response.json().then(errorData => {
+                                 throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Received data:", data); // Log data for debugging
+            
+                        if (data.date_conflict) {
+                            // Conflicts detected
+                            dateConflictAlert.classList.remove('hidden');
+                            data.conflict_messages.forEach(msg => {
+                                const li = document.createElement('li');
+                                li.textContent = msg;
+                                conflictMessagesList.appendChild(li);
+                            });
+            
+                            // Show AI suggestions if available (only when conflicts exist)
+                            if (data.ai_date_suggestions) {
+                                 // Check if suggestions are not just an empty string or error message indication from server
+                                 if (data.ai_date_suggestions && !data.ai_date_suggestions.startsWith("Could not generate")) {
+                                    aiDateSuggestionsAlert.classList.remove('hidden');
+                                    aiDateSuggestions.textContent = data.ai_date_suggestions;
+                                 } else {
+                                     // Display the error/info message from AI response in conflict area if needed
+                                     const li = document.createElement('li');
+                                     li.textContent = `AI Suggestion Status: ${data.ai_date_suggestions}`;
+                                     conflictMessagesList.appendChild(li);
+                                 }
+                            }
+            
+            
+                        } else {
+                            // No conflicts detected
+                            calendarInfoAlert.classList.remove('hidden');
+                            let infoText = `Selected date: ${new Date(selectedDate).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })} - No conflicts detected.`;
+            
+                            // Display instructional days info if available
+                            if (data.calendar_analysis && data.calendar_analysis.instructional_days !== undefined) {
+                                infoText += `<br>Instructional days this month: ${data.calendar_analysis.instructional_days}`;
+                            } else if (data.calendar_analysis && data.calendar_analysis.instructional_days === null) {
+                                 infoText += `<br>Instructional days data: Not specified for this month.`;
+                            } else {
+                                 infoText += `<br>Instructional days data: Not available (month not found or no data).`;
+                            }
+            
+            
+                            // Optionally, if there's AI suggestion even without explicit conflict (less likely based on current backend)
+                            // if (data.ai_date_suggestions && data.ai_date_suggestions !== "No conflicts found. This date appears available.") {
+                            //      infoText += `<br>AI noted: ${data.ai_date_suggestions}`; // Or display in AI section?
+                            // }
+            
+                            calendarInfoText.innerHTML = infoText; // Use innerHTML for <br>
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error checking date conflict:', error);
+                        // Display a generic error message to the user
+                        const dateConflictAlert = document.getElementById('dateConflictAlert'); // Get again in case initial fetch failed
+                        const conflictMessagesList = document.getElementById('conflictMessagesList');
+            
+                        dateConflictAlert.classList.remove('hidden');
+                        conflictMessagesList.innerHTML = ''; // Clear messages
+                        const li = document.createElement('li');
+                        li.textContent = `An error occurred while checking the date: ${error.message}`;
+                        conflictMessagesList.appendChild(li);
+            
+                        // Hide other potential info/suggestion areas
+                        document.getElementById('aiDateSuggestionsAlert').classList.add('hidden');
+                        document.getElementById('calendarInfoAlert').classList.add('hidden');
+                    });
+                }
+            
+                // You would call checkDateConflict(selectedDate) when a date is chosen,
+                // for example, from a date picker's change event.
+            </script>
+    
+
+    <script>
+        // Toggle AI features
+        const aiAssistBtn = document.getElementById('aiAssistBtn');
+        const aiFeaturesDiv = document.getElementById('aiFeatures');
+        let aiActive = false;
+
+        aiAssistBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            aiActive = !aiActive;
+
+            if (aiActive) {
+                aiFeaturesDiv.style.display = 'block';
+                this.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                    </svg>
+                    Hide AI Assist
+                `;
+                this.classList.remove('bg-purple-500');
+                this.classList.add('bg-purple-600');
+            } else {
+                aiFeaturesDiv.style.display = 'none';
+                this.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                    </svg>
+                    AI Assist
+                `;
+                this.classList.remove('bg-purple-600');
+                this.classList.add('bg-purple-500');
+            }
+        });
+
+        // Event checkbox toggle for budget field
+        const eventCheckbox = document.getElementById('eventCheckbox');
+        const eventDetails = document.getElementById('eventDetails');
+
+        if (eventCheckbox) {
+            eventCheckbox.addEventListener('change', function() {
+                eventDetails.style.display = this.checked ? 'block' : 'none';
+            });
+        }
+
+        // JavaScript for showing amount field only for Paid events
+        const versionSelect = document.getElementById('version');
+        const amountField = document.getElementById('amountField');
+        const amountInput = document.getElementById('amount');
+
+        versionSelect.addEventListener('change', function() {
+            if (versionSelect.value === 'Paid') {
+                amountField.style.display = 'block';
+            } else {
+                amountField.style.display = 'none';
+                amountInput.value = 0;
+            }
+        });
+
+        // Initial check for version
+        if (versionSelect.value === 'Free') {
+            amountField.style.display = 'none';
+            amountInput.value = 0;
+        }
+
+        // Date calculation logic
+        document.getElementById('doe').addEventListener('change', function() {
+            let doeDate = new Date(this.value);
+            doeDate.setDate(doeDate.getDate() - 1);
+
+            let year = doeDate.getFullYear();
+            let month = (doeDate.getMonth() + 1).toString().padStart(2, '0');
+            let day = doeDate.getDate().toString().padStart(2, '0');
+            document.getElementById('rend').value = `${year}-${month}-${day}`;
+
+            doeDate.setDate(doeDate.getDate() + 11);
+            document.getElementById('resultdate').value = `${doeDate.getFullYear()}-${(doeDate.getMonth()+1).toString().padStart(2,'0')}-${doeDate.getDate().toString().padStart(2,'0')}`;
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

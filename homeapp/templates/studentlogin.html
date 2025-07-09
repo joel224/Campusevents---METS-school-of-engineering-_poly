@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Optional: Custom CSS for background image -->
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            
+        }
+        .bg {
+            background-image: url("{% static 'img/bglogin-student.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-container .form-group {
+            margin-bottom: 15px;
+        }
+        .login-container .form-control {
+            padding: 10px;
+            font-size: 14px;
+        }
+        .error-msg {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            width: 100%;
+    
+            font-size: 16px;
+            border: 1px solid #ced4da;
+            height: 35px;
+        }
+
+        .password-container button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            border: none;
+            color: #007bff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .password-container input:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+        }
+
+        .d-grid {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Image -->
+    <div class="bg">
+        <div class="login-container">
+            <h3>Student Login</h3>
+
+            <!-- Error message if login fails -->
+            {% if msg %}
+                <div class="error-msg">{{ msg }}</div>
+            {% endif %}
+
+            <!-- Login Form -->
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+
+                <!-- Password Field -->
+                <div class=" mt-0">
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password:</label>
+                        <div class="password-container">
+                            <input type="password" class="form-control" id="password" name="password" maxlength="35" required>
+                            <button type="button" onclick="togglePassword()" id="toggleBtn">
+                                <i id="toggleIcon" class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary btn-block w-100">Login</button>
+                
+                <div class="mt-3 text-center">
+                    <a href="/studentregister/" class="text-muted">Don't have an account? Register here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional for dynamic features like dropdowns, modals, etc.) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+    
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+    </script>
+</body>
+</html>

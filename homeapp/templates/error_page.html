@@ -1,0 +1,158 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judge Dashboard</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f8; /* Light gray background for the body */
+            width: 100%;
+        }
+        .navbar {
+            background: linear-gradient(to right, #006769, #4B164C); 
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: white;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ecf0f1 !important; /* Light hover effect */
+        }
+        .sidebar {
+            height: 100vh;
+            background: #006769; 
+            color: white;
+            padding-top: 20px;
+            position: fixed;
+            width: 250px;
+        }
+        .sidebar a {
+            color: white;
+            padding: 12px 20px;
+            display: block;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #2ecc71; /* Soft green on hover */
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .dashboard-card {
+            border-radius: 10px;
+            background-color: #fff; /* White background for the cards */
+        }
+        .card-body {
+            font-size: 18px;
+        }
+        .card-header {
+            font-size: 22px;
+            background-color: #003254; /* Blue background for card headers */
+            color: white;
+        }
+        .dropdown-menu {
+            background-color: #0a5e97; /* Dark blue dropdown */
+            padding: 10px 0; /* Add padding to ensure space for each item */
+            width: 190px; /* Set a fixed width for the dropdown */
+            
+        }
+        .dropdown-item {
+            color: white;
+            padding: 12px 10px;
+            font-size: 16px;
+        }
+        .dropdown-item:hover {
+            background-color: #2ecc71; /* Green hover effect */
+        }
+        .btn-a{
+            background-color: #003254;
+            color: White;
+        }
+        .btn-a:hover{
+            background-color: #005719;
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/judgeindex/">MET'S Polytechnic Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                   
+                    <!-- Dropdown for Account -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/judgeprofile/">Profile</a></li>
+                            <li><a class="dropdown-item" href="/judgedelete/">Delete Account</a></li><hr style="color: #76c8ff;margin:0px;">
+                            <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Judge-Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/judgestudentview/">Student Details</a>
+        <a href="/judgestaffview/">Staff Details</a>
+        <a href="/judge/assigned_events/">Events Assigned</a>
+        <a href="/resultforjudge/">Publish Result</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="alert alert-danger" role="alert">
+                        <!-- Displaying the error message passed from the view -->
+                        <strong>Error!</strong> {{ message }}
+                    </div>
+    
+                    <!-- Button to go back to the previous page or any other page -->
+                    <a href="javascript:history.back()" class="btn btn-primary">Go Back</a>
+                    <!-- Or you can redirect to a specific page, for example, to the dashboard -->
+                    <a href="/judgeindex/" class="btn btn-secondary">Go to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

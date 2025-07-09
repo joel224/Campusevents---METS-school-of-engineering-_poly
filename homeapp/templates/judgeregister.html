@@ -1,0 +1,229 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judge Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 30px;
+            padding: 20px;
+        }
+
+        .form-side {
+            width: 60%;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-height: 600px;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .form-side::-webkit-scrollbar {
+            display: none;
+        }
+
+        .image-side {
+            width: 49%;
+            padding: 20px;
+            margin-left: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .image-side img {
+            width: 100%;
+            height: 520px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #3498db;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .qualification-section {
+            margin-bottom: 15px;
+        }
+
+        .qualification-fields {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>Judge Registration</h2>
+        <div class="container">
+            <div class="form-container">
+                <!-- Image Section -->
+                <div class="image-side">
+                    <img src="{% static 'img/judge.jpg' %}" alt="Judge Image" width="500" /><br>
+                    <button class="btn btn-info" onclick="index()">Back</button>
+                </div>
+
+                <!-- Form Section -->
+                <div class="form-side">
+                    <form method="POST" enctype="multipart/form-data" action="">
+                        {% csrf_token %}
+
+                        <!-- Judge's Name -->
+                        <div class="form-group">
+                            <label for="jname">Judge Name</label>
+                            <input type="text" class="form-control" id="jname" name="jname" placeholder="Enter Judge's Full Name" required>
+                        </div>
+
+                        <!-- Gender Selection -->
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" class="form-control" required>
+                                <option value="Male">MALE</option>
+                                <option value="Female">FEMALE</option>
+                                <option value="Prefer Not to Say">Prefer not to say</option>
+                            </select>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Judge's Email" required>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Judge's Password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="toggle-password">
+                                        <i class="fas fa-eye-slash"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div id="passwordError" class="invalid-feedback"> Password must be at least 8 characters long and contain at least one letter and one number.</div>
+                        </div>
+                        
+
+                        <!-- Date of Birth -->
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" class="form-control" id="dob" name="dob" required>
+                        </div>
+
+                        <!-- Qualification (Multiple Selection) -->
+                        <div class="form-group">
+                            <label for="qualification">Qualifications</label>
+    <textarea id="qualification" name="qualification" class="form-control" rows="5" placeholder="Enter your qualifications here" required></textarea>
+    <small class="form-text text-muted">Please list your qualifications,  separated by commas.</small>
+
+                        </div>
+
+                        <!-- Experience -->
+                        <div class="form-group">
+                            <label for="experience">Experience (Years)</label>
+                            <input type="number" class="form-control" id="experience" name="experience" 
+                                   placeholder="Enter number of years" required 
+                                   min="0" max="75" step="1">
+                            <div class="invalid-feedback" id="experienceError">
+                                Please Enter Correct Experience has Judge
+                            </div>
+                        </div>
+
+                        <!-- Profile Picture -->
+                        <div class="form-group">
+                            <label for="profilepic">Profile Picture</label>
+                            <input type="file" class="form-control" id="profilepic" name="profilepic" accept="image/*" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="submit-btn">Register Judge</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const passwordField = document.getElementById('password');
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordError = document.getElementById('passwordError');
+        
+        // Toggle visibility of password
+        togglePassword.addEventListener('click', function () {
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+            togglePassword.querySelector('i').classList.toggle('fa-eye-slash');
+            togglePassword.querySelector('i').classList.toggle('fa-eye');
+        });
+    
+        // Validate pattern and show error if needed
+        passwordField.addEventListener('input', function () {
+            if (!passwordField.validity.valid) {
+                passwordError.style.display = 'block';
+                passwordField.classList.add('is-invalid');
+            } else {
+                passwordError.style.display = 'none';
+                passwordField.classList.remove('is-invalid');
+            }
+        });
+
+        const experienceField = document.getElementById('experience');
+        const experienceError = document.getElementById('experienceError');
+    
+        experienceField.addEventListener('input', function () {
+            // Check if the value is valid and within the required range
+            if (experienceField.validity.rangeUnderflow || experienceField.validity.rangeOverflow) {
+                experienceError.style.display = 'block'; // Show error message
+                experienceField.classList.add('is-invalid'); // Add invalid class for red border
+            } else {
+                experienceError.style.display = 'none'; // Hide error message
+                experienceField.classList.remove('is-invalid'); // Remove invalid class
+            }
+        });
+    </script>
+
+    <script>
+      
+        function index() {
+            window.location.href = "/";
+        }
+    </script></body>
+</html>

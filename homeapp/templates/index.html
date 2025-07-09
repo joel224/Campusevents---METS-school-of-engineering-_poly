@@ -1,0 +1,358 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MET'S Polytechnic College- Campus Events</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+
+        /* Dual Color Scheme */
+        .header, .footer {
+            background-color: #003366; /* Dark Blue */
+            color: white;
+        }
+
+        .header .title {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .sub-title {
+            font-size: 1.75rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Carousel Styling */
+        .carousel-item img {
+            height: 500px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: #003366;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-top: 20px;
+            font-weight: 300;
+        }
+
+        /* About Section */
+        .about-content {
+            padding: 60px 20px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: #003366;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #003366;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer .footer-text {
+            font-size: 1rem;
+        }
+
+        .footer .footer-text a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .footer .footer-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(to right, #EDDFE0, #F5F5F7  ); /* Lighter Blue */
+        }
+        .navbar-brand:hover{
+            color: #654520;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #654520;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #C96868;
+        }
+
+        /* Enhanced Dropdown */
+        .dropdown-menu {
+            background-color: #003366;
+            border-radius: 0.5rem;
+            border: none;
+        }
+
+        .dropdown-item {
+            color: white;
+        }
+
+        .dropdown-item:hover {
+            background-color: #005fa3; /* Lighter Blue for hover effect */
+            color: white;
+        }
+
+        .dropdown-toggle::after {
+            content: none; /* Remove default dropdown icon */
+        }
+
+        .dropdown-item:focus, .dropdown-item:hover {
+            color: white;
+            background-color: #005fa3; /* Lighter Blue */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#" style="font-size: 28px;font-weight:700; letter-spacing:3px;"><img src="{% static 'img/logo12.png' %}" width="50px"> MET'S EVENTS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about-us">About Us</a>
+                    </li>
+                    <!-- Sign In Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="signInDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Sign In
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="signInDropdown">
+                            <li><a class="dropdown-item" href="/studentlogin/">Student</a></li>
+                            <li><a class="dropdown-item" href="/stafflogin/">Staff</a></li>
+                            <li><a class="dropdown-item" href="/judgelogin/">Judge</a></li>
+                        </ul>
+                    </li>
+                    <!-- Register Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="registerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Register
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="registerDropdown">
+                            <li><a class="dropdown-item" href="/studentregister/">Student</a></li>
+                            <li><a class="dropdown-item" href="/studentAI/">AI</a></li>
+                            <li><a class="dropdown-item" href="/staffregister/">Staff</a></li>
+                            <li><a class="dropdown-item" href="/judgeregisteration/">Judge</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/adminlogin/">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel Section -->
+    <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'img/campus1.jpg' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 style="color: #000000;font-weight:800; background-color:#fdedffc6; border-radius:6px;">Welcome to MET'S Polytechnic College</h5>
+                    <p style="color: #004248;font-weight:800;background-color:#fffcfcc6; border-radius:6px;">Empowering students through dynamic events and opportunities to enhance skills, foster creativity, and build a brighter future.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/collegein111.jpg' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 style="color: #470051;font-weight:800;background-color:#fdedffc6; border-radius:6px; ">Explore Campus Events</h5>
+                    <p style="color: #00526d;font-weight:800;background-color:#fdfdfdb8; border-radius:6px;">Join and manage exciting events within our campus community.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/cam45.jpg' %}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 style="color: #002a2d;font-weight:800;background-color:#fdedffc6; border-radius:6px;">Get Involved in the Learning Process</h5>
+                    <p style="color: #00272a;font-weight:800;background-color:#fdedffc6; border-radius:6px;">Become part of an engaging and dynamic student body.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    {% for message in messages %}
+    {% if message %}
+    <p style="color: green;background:rgb(168, 255, 168);text-align:center">{{message}}</p>
+    {% endif %}
+    {% endfor %}
+  
+
+    <!-- About Section -->
+    <section id="about-us" class="about-content">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Text Content -->
+                <div class="col-md-6" style="text-align: justify;">
+                    <h2>About Us</h2>
+                    <p>"MET'S Polytechnic College is one of the Best Government approved Self-financing Polytechnic College in Kerala, which offers a wide range of 3-Year Diploma Courses with IBM Certification. 
+                        <br>The Institution is Approved by All India Council for Technical Education (AICTE) and Affiliated to State Board of Technical Education (SBTE), Kerala. The successful completion of these courses helps the Students to start his or her profession, either through a job at a well-reputed Government/Private Company or through Startups or by joining for Higher Studies like BTech, BVoc etc. The 3-Year Diploma Courses offered @ METS are: 
+                        1. Mechanical Engineering 2. Electrical & Electronics Engineering 3. Computer Engineering 4. Architecture 5. Commercial Practice</p>
+                </div>
+                
+                <!-- Dancing Ball -->
+                <div class="col-md-6 position-relative">
+                    <!-- Ball Dancing Animation -->
+                    <div class="dancing-ball" style="font-size: 26px;"></div>
+                    <img src="{% static 'img/collegein111.jpg' %}" alt="KG College of Science & Commerce" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+     
+    <style>
+        /* Ball Dancing Animation */
+        .dancing-ball {
+            width: 8px;
+            height: 8px;
+            background-color: rgb(255, 216, 247); /* Bright yellow color */
+            border-radius: 50%;
+            
+            left: 50%;
+            top: 10%; /* Adjust position from top */
+            animation: dance 7s ease-in-out infinite;
+        }
+    
+        /* Dancing Animation Keyframes */
+        @keyframes dance {
+            0% {
+                transform: translateX(-50%) translateY(0);
+            }
+           
+            75% {
+                transform: translateX(725px)  rotate(20deg);
+            }
+            100% {
+                transform: translateX(-50%) translateY(0) rotate(0);
+            }
+        }
+    </style>
+    
+
+
+    <section id="location" class="location-content">
+        <div class="container">
+            <h2>Our Location</h2>
+            <div class="row">
+                <!-- Google Map Embed -->
+                <div class="col-md-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.23189908765!2d76.2707307745109!3d10.22531926911816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0805a0e9803905%3A0x3018fb45f51d6f6!2sMET&#39;S%20Polytechnic%2C%20Mala%2C%20Thrissur!5e1!3m2!1sen!2sin!4v1739359688847!5m2!1sen!2sin" width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                
+                
+                <!-- Address Details -->
+                <div class="col-md-6">
+                    <h4>MET'S Polytechnic College</h4>
+                    <p>
+                      
+                        Kuruvilassery, PO, Mala, Kerala 680732,<br>
+                        Thrissur ,India<br>
+                        <strong>Contact Number:</strong> +91 120 456 7890
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">
+            &copy; 2024 MET'S Polytechnic. All Rights Reserved. | 
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a>
+        </p>
+    </footer>
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+            // Define the custom location (KG College, Thrissur)
+            var location = {lat: 10.5276, lng: 76.2144}; 
+    
+            // Initialize the map and set the zoom level and center position
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,  // Adjust zoom level as needed
+                center: location  // Set map center to KG College's location
+            });
+    
+            // Create a marker at the specified location
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: 'KG College, Thrissur'  // Title that appears when the marker is hovered over
+            });
+    
+            // Create an InfoWindow to show the title when the marker is clicked
+            var infoWindow = new google.maps.InfoWindow({
+                content: '<div style="text-align: center;"> <h4>KG College, Thrissur</h4> <img src="{% static "img/collegein11.jpg" %}" alt="KG College" style="width: 200px; height: auto; border-radius: 8px;">  <p>KG College of Science & Commerce, Thrissur, Kerala, India</p>   </div>'  // Customize content if needed
+            });
+            
+    
+            // Add a click event listener to the marker to open the InfoWindow
+            marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+            });
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/staffreg.css' %}">
+
+<style>
+   
+    .image-preview {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;  /* Make the image round */
+        object-fit: cover;   /* Ensure the image fits the circle */
+        display: none;       /* Hide the preview initially */
+    }
+
+    .btn-green {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        display: inline-block;
+    }
+
+    .btn-green:hover {
+        background-color: #218838;
+    }
+
+    .scrollable-div {
+        width: 1380px;  /* Set a fixed width for the div */
+        height: 690px; /* Set a fixed height for the div */
+        overflow: auto; /* Enable both horizontal and vertical scrolling when content overflows */
+        
+    }
+
+    .content {
+        height: 600px;  /* Make the content taller than the div to force scrolling */
+       
+        padding: 1px;
+    }
+    .scrollable-div::-webkit-scrollbar {
+        display: none; /* Hide the scrollbar */
+    }
+    .password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px; /* Ensure space for the icon */
+}
+
+.eye-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.eye-btn i {
+    font-size: 16px;
+    color: #555;
+}
+
+</style>
+
+
+</head>
+<body>
+
+
+    <div class="scrollable-div">
+        <div class="content">
+
+    <div class="form-container" >
+        <h2>Staff Registration Form</h2>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" maxlength="35" required>
+            </div>
+            <div class="container mt-3">
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" maxlength="35" required 
+                               pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+                               title="Password must be at least 8 characters long and contain at least one letter and one number.">
+                        <button type="button" onclick="togglePassword()" id="toggleBtn" class="eye-btn">
+    <i id="toggleIcon" class="fas fa-eye"></i>
+</button>
+
+                    </div>
+                    <div class="invalid-feedback" id="passwordError" style="display: none; color:red;">
+                        Password must be at least 8 characters long and contain at least one letter and one number.
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender"> 
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Prefer Not to Say">Prefer Not to Say</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" maxlength="255" required>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department</label>
+                <select id="department" name="department" required>
+                    <option value="Information_Technology">Information Technology</option>
+                    <option value="Computer_Science">Computer Science</option>
+                    <option value="Computer_Technology">Computer Technology</option>
+                    <option value="Biotechnology">Biotechnology</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Environmental_Science">Environmental Science</option>
+                    <option value="Astronomy">Astronomy</option>
+                    <option value="Microbiology">Microbiology</option>
+                    <option value="Genetics">Genetics</option>
+                    <option value="Biochemistry">Biochemistry</option>
+                    <option value="Geology">Geology</option>
+                    <option value="Botany">Botany</option>
+                    <option value="Zoology">Zoology</option>
+                    <option value="Psychology">Psychology</option>
+                    <option value="Neuroscience">Neuroscience</option>
+                    <option value="Applied_Physics">Applied Physics</option>
+                    <option value="Astronomical_Sciences">Astronomical Sciences</option>
+                    <option value="Marine_Biology">Marine Biology</option>
+                    <option value="Forensic_Science">Forensic Science</option>
+                    <option value="Business_Administration">Business Administration</option>
+                    <option value="Commerce">Commerce</option>
+                    <option value="Economics">Economics</option>
+                    <option value="Accountancy">Accountancy</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Business_Law">Business Law</option>
+                    <option value="International_Business">International Business</option>
+                    <option value="Taxation">Taxation</option>
+                    <option value="Entrepreneurship">Entrepreneurship</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="designation">Designation:</label>
+                <select id="designation" name="designation" required>
+                    <option value="HOD">HOD</option>
+                    <option value="Assistant_Professor">Assistant_Professor</option>
+                    <option value="Professor">Professor</option>
+    
+                </select>
+            </div>
+
+            <div class="container mt-5">
+                <h2>Upload and Preview Image</h2>
+            
+                <!-- File Input hidden, triggered by the button -->
+                <input type="file" name="pic" id="imageUpload" accept="image/*" onchange="previewImage()" hidden>
+            
+                <!-- Custom Button to trigger file input -->
+              <span style="display:flex; "> <label for="imageUpload" name="pic" class="btn-green" style="display:flex; height:auto;width:189px;justify-content:center;align-items:center">Choose Image</label>
+            
+                <!-- Image Preview -->
+                <img id="imagePreview" name="pic" class="image-preview mt-2" src="" alt="Image Preview" style="margin-left:25px"></span> 
+            
+            </div>
+
+            <div class="form-group">
+                <label for="mobile_no">Mobile No:</label>
+                <input type="tel" id="mobile_no" name="mobile_no" pattern="[0-9]{10}" maxlength="10">
+            </div>
+
+            <div class="but">
+                <button type="submit" class="submit-btn">Register</button>
+                <button type="reset" class="submit-btn">Clear</button>
+                <a href="/">Home</a>
+            </div>
+            </form> 
+            
+    </div>
+
+    </div></div>
+    <div class="photopath" style="width:70%;display:flex;justify-content:center;">
+        <img src="{% static 'img/staff-register.jpg' %}" alt="staff Registration" width="450px" style="border-radius:56px 76px ;">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+<!-- Custom JS for Image Preview -->
+<script>
+    function previewImage() {
+        const file = document.getElementById('imageUpload').files[0];
+        const preview = document.getElementById('imagePreview');
+        
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';  // Show the image preview
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+
+
+    //password visible code 
+
+    function togglePassword() {
+        const passwordField = document.getElementById('password');
+        const toggleIcon = document.getElementById('toggleIcon');
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        }
+    }
+
+    const passwordField = document.getElementById('password');
+    const passwordError = document.getElementById('passwordError');
+
+    passwordField.addEventListener('input', function () {
+        // Check if the input matches the pattern
+        if (!passwordField.validity.valid) {
+            passwordError.style.display = 'block'; // Show error message
+            passwordField.classList.add('is-invalid'); // Apply invalid class (Bootstrap style)
+        } else {
+            passwordError.style.display = 'none'; // Hide error message
+            passwordField.classList.remove('is-invalid'); // Remove invalid class
+        }
+    });
+</script>
+
+
+</body>
+</html>

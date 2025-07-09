@@ -1,0 +1,782 @@
+[
+    {
+      "eventName": "Scavenger Hunt",
+      "category": "Community Engagement",
+      "description": "A campus-wide adventure that promotes exploration and teamwork by solving clues and puzzles leading to a final treasure.",
+      "details": {
+        "type": "Outdoor activity",
+        "location": "Outdoor: Campus grounds and surrounding community",
+        "participants": "Students, faculty",
+        "materials": "Clues, maps, prizes",
+        "duration": "Variable, typically 2-4 hours",
+        "budget": "Low to medium",
+        "promotion": "Campus flyers, social media",
+        "logistics": "Route planning, clue creation, prize procurement"
+      }
+    },
+    {
+      "eventName": "Poker Tournament",
+      "category": "Social",
+      "description": "A competitive card game event where students can test their skills and socialize.",
+      "details": {
+        "type": "Indoor game",
+        "location": "Indoor: Student union, common room",
+        "participants": "Students",
+        "materials": "Poker chips, cards, tables",
+        "duration": "Variable, depending on the number of participants",
+        "budget": "Medium",
+        "promotion": "Student forums, posters",
+        "logistics": "Registration, table setup, prize distribution"
+      }
+    },
+    {
+      "eventName": "Career Fair",
+      "category": "Academic & Professional",
+      "description": "An event connecting students with potential employers, featuring local businesses and industry leaders.",
+      "details": {
+        "type": "Professional networking",
+        "location": "Indoor: Campus hall, gymnasium",
+        "participants": "Students, employers, alumni",
+        "materials": "Booth setups, brochures, resumes",
+        "duration": "1-2 days",
+        "budget": "High",
+        "promotion": "Campus career services, job boards",
+        "logistics": "Employer registration, booth setup, scheduling"
+      }
+    },
+    {
+      "eventName": "Comedy Night",
+      "category": "Social",
+      "description": "An evening of laughter featuring stand-up acts and improv performances.",
+      "details": {
+        "type": "Entertainment",
+        "location": "Indoor: Auditorium, student lounge",
+        "participants": "Students, comedians",
+        "materials": "Microphones, stage setup, lighting",
+        "duration": "2-3 hours",
+        "budget": "Medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Comedian booking, stage setup, ticketing"
+      }
+    },
+    {
+      "eventName": "Craft Workshops",
+      "category": "Social",
+      "description": "Hands-on sessions where students can learn and create various crafts, fostering creativity and social interaction.",
+      "details": {
+        "type": "Creative activity",
+        "location": "Indoor: Art studio, common room",
+        "participants": "Students",
+        "materials": "Craft supplies, tools, instructions",
+        "duration": "2-3 hours",
+        "budget": "Medium",
+        "promotion": "Campus craft clubs, social media",
+        "logistics": "Material procurement, workshop setup, instructor coordination"
+      }
+    },
+    {
+      "eventName": "Film Festival",
+      "category": "Social & Cultural",
+      "description": "A celebration of cinema featuring student-made films, documentaries, and animations.",
+      "details": {
+        "type": "Cultural event",
+        "location": "Indoor: Campus theater, auditorium",
+        "participants": "Students, filmmakers, film enthusiasts",
+        "materials": "Projector, screen, sound system, red carpet",
+        "duration": "1-2 days",
+        "budget": "Medium to High",
+        "promotion": "Film club, campus media, social media",
+        "logistics": "Film submissions, screening schedule, Q&A panel"
+      }
+    },
+    {
+      "eventName": "Meet Your Professor",
+      "category": "Academic & Professional",
+      "description": "An informal gathering for students to connect with their professors outside of the classroom.",
+      "details": {
+        "type": "Networking",
+        "location": "Indoor: Cafeteria, lounge",
+        "participants": "Students, professors",
+        "materials": "Refreshments, seating",
+        "duration": "1-2 hours",
+        "budget": "Low",
+        "promotion": "Departmental emails, flyers",
+        "logistics": "Scheduling, venue arrangement"
+      }
+    },
+    {
+      "eventName": "Outdoor Movie Night",
+      "category": "Social",
+      "description": "A relaxed evening of watching movies under the stars.",
+      "details": {
+        "type": "Entertainment",
+        "location": "Outdoor: Campus lawn, open field",
+        "participants": "Students",
+        "materials": "Projector, screen, blankets, snacks",
+        "duration": "3-4 hours",
+        "budget": "Low to medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Movie selection, setup, weather contingency"
+      }
+    },
+    {
+      "eventName": "Skills Seminar",
+      "category": "Academic & Professional",
+      "description": "Workshops focusing on practical skills like resume building, time management, and communication.",
+      "details": {
+        "type": "Educational",
+        "location": "Indoor: Classrooms, lecture halls",
+        "participants": "Students",
+        "materials": "Presentations, handouts, interactive exercises",
+        "duration": "2-4 hours",
+        "budget": "Medium",
+        "promotion": "Career services, departmental emails",
+        "logistics": "Instructor coordination, material preparation"
+      }
+    },
+    {
+      "eventName": "Book Debates",
+      "category": "Social & Cultural",
+      "description": "Discussions and debates about popular or classic books, fostering intellectual engagement.",
+      "details": {
+        "type": "Social and Cultural",
+        "location": "Indoor: Library, lecture halls",
+        "participants": "Students",
+        "materials": "Books, debate topics, moderation",
+        "duration": "2-3 hours",
+        "budget": "Low",
+        "promotion": "Library postings, English clubs",
+        "logistics": "Book selection, moderator coordination"
+      }
+    },
+    {
+      "eventName": "Campus Fun Run",
+      "category": "Community Engagement",
+      "description": "A friendly race promoting fitness and community spirit.",
+      "details": {
+        "type": "Outdoor activity",
+        "location": "Outdoor: Campus grounds, local park",
+        "participants": "Students, faculty",
+        "materials": "Route markers, water stations, timers",
+        "duration": "2-3 hours",
+        "budget": "Medium",
+        "promotion": "Fitness clubs, social media",
+        "logistics": "Route planning, registration, safety measures"
+      }
+    },
+    {
+      "eventName": "Community Service Events",
+      "category": "Community Engagement",
+      "description": "Events where students volunteer for local organizations.",
+      "details": {
+        "type": "Volunteer activity",
+        "location": "Outdoor and Indoor: Various local organizations",
+        "participants": "Students",
+        "materials": "Varies by event",
+        "duration": "Variable",
+        "budget": "Low",
+        "promotion": "Volunteer clubs, campus outreach",
+        "logistics": "Organization coordination, transportation"
+      }
+    },
+    {
+      "eventName": "Cooking Class",
+      "category": "Social",
+      "description": "Learning and creating meals together",
+      "details": {
+        "type": "Social and Educational",
+        "location": "Indoor: Campus Kitchens, Classrooms",
+        "participants": "Students",
+        "materials": "Ingredients, cookware, Recipes",
+        "duration": "2-3 Hours",
+        "budget": "Medium",
+        "promotion": "Social Media, Flyers",
+        "logistics": "Ingredient purchase, Instructor coordination"
+      }
+    },
+    {
+      "eventName": "Drum Circle",
+      "category": "Social & Cultural",
+      "description": "A group music experience where participants play drums and other percussion instruments.",
+      "details": {
+        "type": "Cultural and Social",
+        "location": "Outdoor and Indoor: Campus lawn, music rooms",
+        "participants": "Students",
+        "materials": "Drums, percussions, seating",
+        "duration": "1-2 hours",
+        "budget": "Low",
+        "promotion": "Music clubs, social media",
+        "logistics": "Instrument provision, facilitator coordination"
+      }
+    },
+    {
+      "eventName": "Industry Networking Events",
+      "category": "Academic & Professional",
+      "description": "Events designed to connect students with professionals in specific industries.",
+      "details": {
+        "type": "Professional networking",
+        "location": "Indoor: Conference rooms, event spaces",
+        "participants": "Students, industry professionals",
+        "materials": "Networking materials, refreshments",
+        "duration": "2-3 hours",
+        "budget": "Medium to High",
+        "promotion": "Departmental emails, career services",
+        "logistics": "Guest speaker coordination, venue setup"
+      }
+    },
+    {
+      "eventName": "Mentor Program Event",
+      "category": "Academic & Professional",
+      "description": "Events that facilitate connections between mentors and mentees.",
+      "details": {
+        "type": "Professional development",
+        "location": "Indoor: Meeting rooms, lounges",
+        "participants": "Students, mentors",
+        "materials": "Program materials, refreshments",
+        "duration": "1-2 hours",
+        "budget": "Low to medium",
+        "promotion": "Mentor program coordinators",
+        "logistics": "Matching, scheduling"
+      }
+    },
+    {
+      "eventName": "Murder Mystery",
+      "category": "Social",
+      "description": "An interactive game where participants solve a fictional murder.",
+      "details": {
+        "type": "Interactive entertainment",
+        "location": "Indoor: Dining hall, event space",
+        "participants": "Students",
+        "materials": "Scripts, props, clues",
+        "duration": "3-4 hours",
+        "budget": "Medium",
+        "promotion": "Social media, event flyers",
+        "logistics": "Script creation, prop procurement"
+      }
+    },
+    {
+      "eventName": "Music Event",
+      "category": "Social & Cultural",
+      "description": "Concerts, performances, and other musical events.",
+      "details": {
+        "type": "Entertainment",
+        "location": "Indoor and Outdoor: Auditorium, outdoor stage",
+        "participants": "Students, musicians",
+        "materials": "Sound system, stage setup, lighting",
+        "duration": "2-4 hours",
+        "budget": "Medium to High",
+        "promotion": "Music clubs, social media",
+        "logistics": "Band booking, stage setup"
+      }
+    },
+    {
+      "eventName": "Pet Therapy Sessions",
+      "category": "Mental health",
+      "description": "Sessions with trained therapy animals to reduce stress and anxiety.",
+      "details": {
+        "type": "Wellness",
+        "location": "Indoor: Student lounge, library",
+        "participants": "Students",
+        "materials": "Therapy animals, seating",
+        "duration": "1-2 hours",
+        "budget": "Medium",
+        "promotion": "Wellness center, student support services",
+        "logistics": "Animal coordination, venue setup"
+      }
+    },
+    {
+      "eventName": "Solo Night Hike",
+      "category": "Social",
+      "description": "Guided night hike for students to explore nature.",
+      "details": {
+        "type": "Outdoor activity",
+        "location": "Outdoor: Local hiking trails",
+        "participants": "Students",
+        "materials": "Flashlights, safety gear, snacks",
+        "duration": "3-4 hours",
+        "budget": "Low to medium",
+        "promotion": "Outdoor clubs, social media",
+        "logistics": "Trail selection, safety measures"
+      }
+    },
+    {
+      "eventName": "Autumn Festival",
+      "category": "Social & Cultural",
+      "description": "A celebration of the autumn season with various activities and food.",
+      "details": {
+        "type": "Seasonal event",
+        "location": "Outdoor: Campus grounds, outdoor areas",
+        "participants": "Students, faculty",
+        "materials": "Decorations, food stalls, games",
+        "duration": "1-2 days",
+        "budget": "Medium to high",
+        "promotion": "Campus events, social media",
+        "logistics": "Vendor coordination, activity planning"
+      }
+    },
+    {
+      "eventName": "Cultural Showcases",
+      "category": "Social & Cultural",
+      "description": "Events highlighting diverse cultural traditions through performances, food, and art.",
+      "details": {
+        "type": "Cultural event",
+        "location": "Indoor: Auditorium, event spaces",
+        "participants": "Students, cultural groups",
+        "materials": "Stage setup, cultural displays, food",
+        "duration": "2-3 hours",
+        "budget": "Medium",
+        "promotion": "Cultural clubs, social media",
+        "logistics": "Performance scheduling, venue setup"
+      }
+    },
+    {
+      "eventName": "Campus Farmers Market",
+      "category": "Community Engagement",
+      "description": "A market featuring local farmers and vendors selling fresh produce and goods.",
+      "details": {
+        "type": "Community market",
+        "location": "Outdoor: Campus grounds, outdoor areas",
+        "participants": "Students, local vendors",
+        "materials": "Vendor booths, tents, produce",
+        "duration": "1 day",
+        "budget": "Medium",
+        "promotion": "Campus events calendar, social media",
+        "logistics": "Vendor coordination, market setup"
+      }
+    },
+    {
+      "eventName": "Food Parties",
+      "category": "Social",
+      "description": "Social gatherings centered around food and drinks.",
+      "details": {
+        "type": "Social event",
+        "location": "Indoor: Student lounge, common areas",
+        "participants": "Students",
+        "materials": "Food, drinks, decorations",
+        "duration": "2-3 hours",
+        "budget": "Low to medium",
+        "promotion": "Social media, word of mouth",
+        "logistics": "Food preparation, venue setup"
+      }
+    },
+    {
+      "eventName": "Stuff-a-Plush Events",
+      "category": "Social",
+      "description": "Students stuff plushies and create keepsakes.",
+      "details": {
+        "type": "Creative Activity",
+        "location": "Indoor: Student Lounge, Event Space",
+        "participants": "Students",
+        "materials": "Unstuffed plushies, stuffing, themes",
+        "duration": "2-3 Hours",
+        "budget": "Medium",
+        "promotion": "Social Media, Campus Flyers",
+        "logistics": "Plushie procurement, Registration"
+      }
+    },
+    {
+      "eventName": "On-Campus Concerts",
+      "category": "Social & Cultural",
+      "description": "Live music performances featuring local and celebrity artists.",
+      "details": {
+        "type": "Entertainment",
+        "location": "Outdoor and Indoor: Outdoor stage, auditorium",
+        "participants": "Students, musicians",
+        "materials": "Sound system, stage setup, lighting",
+        "duration": "2-4 Hours",
+        "budget": "High",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Artist booking, stage setup, ticketing"
+      }
+    },
+    {
+      "eventName": "Silent Disco",
+      "category": "Social",
+      "description": "A dance party where participants listen to music through wireless headphones.",
+      "details": {
+        "type": "Entertainment",
+        "location": "Outdoor and Indoor: Campus lawn, dance floor",
+        "participants": "Students",
+        "materials": "Wireless headphones, DJ, lighting",
+        "duration": "2-3 Hours",
+        "budget": "Medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Headphone rental, DJ booking"
+      }
+    },
+    {
+      "eventName": "Karaoke Night",
+      "category": "Social",
+      "description": "An event where students sing along to popular songs.",
+      "details": {
+        "type": "Entertainment",
+        "location": "Indoor: Student lounge, event space",
+        "participants": "Students",
+        "materials": "Karaoke machine, microphones, screen",
+        "duration": "2-3 Hours",
+        "budget": "Low to Medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Karaoke setup, song selection"
+      }
+    },
+    {
+      "eventName": "Dorm Decor Crafts",
+      "category": "Social",
+      "description": "Craft workshops for students to personalize their dorm rooms.",
+      "details": {
+        "type": "Creative Activity",
+        "location": "Indoor: Art studio, common room",
+        "participants": "Students",
+        "materials": "Craft supplies, tools, instructions",
+        "duration": "2-3 Hours",
+        "budget": "Medium",
+        "promotion": "Campus craft clubs, social media",
+        "logistics": "Material procurement, workshop setup, instructor coordination"
+      }
+    },
+    {
+      "eventName": "Trivia Nights",
+      "category": "Social",
+      "description": "A competition testing students' knowledge on various topics.",
+      "details": {
+        "type": "Entertainment",
+        "location": "Indoor: Student lounge, cafeteria",
+        "participants": "Students",
+        "materials": "Trivia questions, prizes, scorekeeping",
+        "duration": "2-3 Hours",
+        "budget": "Low",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Question creation, prize procurement"
+      }
+    },
+    {
+      "eventName": "Open Mics",
+      "category": "Social & Cultural",
+      "description": "An event where students share their talents through performances.",
+      "details": {
+        "type": "Entertainment",
+        "location": "Indoor: Student lounge, auditorium",
+        "participants": "Students",
+        "materials": "Microphones, stage setup, sound system",
+        "duration": "2-3 Hours",
+        "budget": "Low to medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Signup process, stage setup"
+      }
+    },
+    {
+      "eventName": "Ping-Pong Ball Drop",
+      "category": "Social",
+      "description": "A fun event where ping-pong balls are dropped from a tall building with prizes.",
+      "details": {
+        "type": "Entertainment",
+        "location": "Outdoor: Campus grounds, tall building",
+        "participants": "Students",
+        "materials": "Ping-pong balls, prizes, target",
+        "duration": "1-2 Hours",
+        "budget": "Low to medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Ball marking, target setup, prize distribution"
+      }
+    },
+    {
+      "eventName": "Sports Tournaments",
+      "category": "Community Engagement",
+      "description": "Intramural sports competitions among student teams.",
+      "details": {
+        "type": "Sports activity",
+        "location": "Outdoor and Indoor: Campus sports fields, gymnasium",
+        "participants": "Students",
+        "materials": "Sports equipment, scorekeeping, prizes",
+        "duration": "1-2 days",
+        "budget": "Medium",
+        "promotion": "Sports clubs, social media",
+        "logistics": "Team registration, scheduling, referee coordination"
+      }
+    },
+    {
+      "eventName": "Outdoor Festivals",
+      "category": "Community Engagement",
+      "description": "Campus-wide festivals with unique activities and entertainment.",
+      "details": {
+        "type": "Entertainment",
+        "location": "Outdoor: Campus grounds, outdoor areas",
+        "participants": "Students, faculty",
+        "materials": "Inflatables, food trucks, music",
+        "duration": "1 day",
+        "budget": "High",
+        "promotion": "Campus events, social media",
+        "logistics": "Vendor coordination, activity planning"
+      }
+    },
+    {
+      "eventName": "One-Day Hiking Adventure",
+      "category": "Social",
+      "description": "Organized hiking trips to explore natural areas.",
+      "details": {
+        "type": "Outdoor activity",
+        "location": "Outdoor: Local hiking trails, parks",
+        "participants": "Students",
+        "materials": "Safety gear, snacks, transportation",
+        "duration": "1 day",
+        "budget": "Medium",
+        "promotion": "Outdoor clubs, social media",
+        "logistics": "Trail selection, transportation, safety measures"
+      }
+    },
+    {
+      "eventName": "Bonfires",
+      "category": "Social",
+      "description": "Social gatherings around a bonfire with food and activities.",
+      "details": {
+        "type": "Social event",
+        "location": "Outdoor: Designated outdoor areas",
+        "participants": "Students",
+        "materials": "Firewood, marshmallows, seating",
+        "duration": "2-3 Hours",
+        "budget": "Low to medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Fire safety, food preparation"
+      }
+    },
+    {
+      "eventName": "Barn Parties",
+      "category": "Social",
+      "description": "Rustic themed parties with music, dancing, and activities.",
+      "details": {
+        "type": "Themed event",
+        "location": "Indoor: Barn, transformed event space",
+        "participants": "Students",
+        "materials": "Decorations, music, activities",
+        "duration": "2-3 Hours",
+        "budget": "Medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Venue decoration, activity planning"
+      }
+    },
+    {
+      "eventName": "Hot Air Balloon Rides",
+      "category": "Social",
+      "description": "Rides in hot air balloons for scenic views.",
+      "details": {
+        "type": "Outdoor activity",
+        "location": "Outdoor: Open fields, designated areas",
+        "participants": "Students",
+        "materials": "Hot air balloons, safety gear",
+        "duration": "1-2 hours",
+        "budget": "High",
+        "promotion": "Campus events, social media",
+        "logistics": "Balloon coordination, safety measures"
+      }
+    },
+    {
+      "eventName": "Fall Festival",
+      "category": "Social & Cultural",
+      "description": "A festival celebrating the autumn season.",
+      "details": {
+        "type": "Seasonal event",
+        "location": "Outdoor: Campus grounds, outdoor areas",
+        "participants": "Students, faculty",
+        "materials": "Decorations, food stalls, games",
+        "duration": "1-2 days",
+        "budget": "Medium to high",
+        "promotion": "Campus events, social media",
+        "logistics": "Vendor coordination, activity planning"
+      }
+    },
+    {
+      "eventName": "Pumpkin Carving",
+      "category": "Social",
+      "description": "A creative activity for Halloween.",
+      "details": {
+        "type": "Creative activity",
+        "location": "Outdoor and Indoor: Student lounge, outdoor areas",
+        "participants": "Students",
+        "materials": "Pumpkins, carving tools, decorations",
+        "duration": "2-3 Hours",
+        "budget": "Low to medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Pumpkin procurement, tool provision"
+      }
+    },
+    {
+      "eventName": "Murder Mystery Dinner",
+      "category": "Social",
+      "description": "An interactive dinner event with a mystery to solve.",
+      "details": {
+        "type": "Interactive entertainment",
+        "location": "Indoor: Dining hall, event space",
+        "participants": "Students",
+        "materials": "Scripts, props, clues, food",
+        "duration": "3-4 Hours",
+        "budget": "Medium",
+        "promotion": "Social media, event flyers",
+        "logistics": "Script creation, prop procurement, catering"
+      }
+    },
+    {
+      "eventName": "Ice Skating",
+      "category": "Social",
+      "description": "Ice skating event for students.",
+      "details": {
+        "type": "Outdoor activity",
+        "location": "Outdoor: Synthetic ice rink",
+        "participants": "Students",
+        "materials": "Ice rink, skates, music",
+        "duration": "2-3 Hours",
+        "budget": "Medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Rink rental, skate provision"
+      }
+    },
+    {
+      "eventName": "Gingerbread House Competition",
+      "category": "Social",
+      "description": "A creative competition for building gingerbread houses.",
+      "details": {
+        "type": "Creative activity",
+        "location": "Indoor: Student lounge, event space",
+        "participants": "Students",
+        "materials": "Gingerbread kits, decorations, prizes",
+        "duration": "2-3 Hours",
+        "budget": "Low to medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Kit procurement, prize distribution"
+      }
+    },
+    {
+      "eventName": "Galentines' Day",
+      "category": "Social",
+      "description": "A celebration of friendship on Valentine's Day.",
+      "details": {
+        "type": "Social event",
+        "location": "Indoor: Student lounge, common areas",
+        "participants": "Students",
+        "materials": "Food, decorations, games",
+        "duration": "2-3 Hours",
+        "budget": "Low to medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Food preparation, decoration setup"
+      }
+    },
+    {
+      "eventName": "Donut Stress",
+      "category": "Mental Health",
+      "description": "A stress relief event with free donuts and relaxation activities.",
+      "details": {
+        "type": "Wellness event",
+        "location": "Indoor: Student lounge, library",
+        "participants": "Students",
+        "materials": "Donuts, refreshments, relaxation activities",
+        "duration": "1-2 Hours",
+        "budget": "Low to medium",
+        "promotion": "Wellness center, student support services",
+        "logistics": "Food procurement, activity setup"
+      }
+    },
+    {
+      "eventName": "Mediation Workshops",
+      "category": "Mental Health",
+      "description": "Workshops teaching meditation techniques for stress relief.",
+      "details": {
+        "type": "Wellness workshop",
+        "location": "Indoor: Quiet rooms, classrooms",
+        "participants": "Students",
+        "materials": "Meditation guides, mats, seating",
+        "duration": "1-2 Hours",
+        "budget": "Low",
+        "promotion": "Wellness center, student support services",
+        "logistics": "Instructor coordination, venue setup"
+      }
+    },
+    {
+      "eventName": "Yoga Sessions",
+      "category": "Mental Health",
+      "description": "Yoga classes for stress relief and relaxation.",
+      "details": {
+        "type": "Wellness activity",
+        "location": "Indoor: Gymnasium, dance studio",
+        "participants": "Students",
+        "materials": "Yoga mats, instructor, music",
+        "duration": "1 hour",
+        "budget": "Low to medium",
+        "promotion": "Wellness center, student support services",
+        "logistics": "Instructor coordination, venue setup"
+      }
+    },
+    {
+      "eventName": "Late-Night Breakfast Bar",
+      "category": "Mental Health",
+      "description": "A late-night breakfast event during finals week.",
+      "details": {
+        "type": "Social and Wellness",
+        "location": "Indoor: Dining hall, student lounge",
+        "participants": "Students",
+        "materials": "Breakfast foods, drinks, seating",
+        "duration": "2-3 Hours",
+        "budget": "Medium",
+        "promotion": "Campus events calendar, social media",
+        "logistics": "Food preparation, venue setup"
+      }
+    },
+    {
+      "eventName": "Play with Puppies",
+      "category": "Mental Health",
+      "description": "Sessions with puppies for stress relief.",
+      "details": {
+        "type": "Wellness event",
+        "location": "Outdoor and Indoor: Student lounge, outdoor areas",
+        "participants": "Students",
+        "materials": "Puppies, toys, seating",
+        "duration": "1-2 Hours",
+        "budget": "Medium",
+        "promotion": "Wellness center, student support services",
+        "logistics": "Puppy coordination, venue setup"
+      }
+    },
+    {
+      "eventName": "Thrifting Event",
+      "category": "Community Engagement",
+      "description": "An event promoting sustainable fashion and thrifting.",
+      "details": {
+        "type": "Community event",
+        "location": "Indoor: Student lounge, event space",
+        "participants": "Students, local community",
+        "materials": "Clothing racks, mirrors, payment setup",
+        "duration": "1 day",
+        "budget": "Low to medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Clothing collection, vendor setup"
+      }
+    },
+    {
+      "eventName": "Charity Run",
+      "category": "Community Engagement",
+      "description": "A run to raise funds for a local charity.",
+      "details": {
+        "type": "Fundraising event",
+        "location": "Outdoor: Campus grounds, local park",
+        "participants": "Students, community members",
+        "materials": "Route markers, water stations, registration setup",
+        "duration": "2-3 Hours",
+        "budget": "Medium",
+        "promotion": "Social media, campus events calendar",
+        "logistics": "Route planning, registration, fundraising coordination"
+      }
+    },
+    {
+      "eventName": "Blood Drive",
+      "category": "Community Engagement",
+      "description": "An event to collect blood donations.",
+      "details": {
+        "type": "Community service",
+        "location": "Indoor: Event space, mobile blood donation unit",
+        "participants": "Students, community members",
+        "materials": "Medical supplies, registration materials, refreshments",
+        "duration": "1 day",
+        "budget": "Medium",
+        "promotion": "Campus health services, social media",
+        "logistics": "Medical coordination, registration, donation setup"
+      }
+    }
+  ]

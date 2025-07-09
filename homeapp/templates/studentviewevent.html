@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f8; /* Light gray background for the body */
+            width: 100%;
+        }
+        .navbar {
+            background: linear-gradient(to right, #006769, #4B164C); 
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: white;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ecf0f1 !important; /* Light hover effect */
+        }
+        .sidebar {
+            height: 100vh;
+            background-color: #006769; /* Darker blue for the sidebar */
+            color: white;
+            padding-top: 32px;
+            position: fixed;
+            width: 250px;
+        }
+        .sidebar a {
+            color: white;
+            padding: 12px 20px;
+            display: block;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #2ecc71; /* Soft green on hover */
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .dashboard-card {
+            border-radius: 10px;
+            background-color: #fff; /* White background for the cards */
+        }
+        .card-body {
+            font-size: 18px;
+        }
+        .card-header {
+            font-size: 22px;
+            background-color: #3498db; /* Blue background for card headers */
+            color: white;
+        }
+        .dropdown-menu {
+            background-color: #2980b9; /* Dark blue dropdown */
+            padding: 10px 0; /* Add padding to ensure space for each item */
+            width: 190px; /* Set a fixed width for the dropdown */
+            
+        }
+        .dropdown-item {
+            color: white;
+            padding: 12px 10px;
+            font-size: 16px;
+        }
+        .dropdown-item:hover {
+            background-color: #2ecc71; /* Green hover effect */
+        }
+        .container {
+            margin-top: 50px;
+        }
+
+        .event-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+
+        .event-card h5 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .event-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .event-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .pay-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .pay-btn:hover {
+            background-color: #218838;
+        }
+
+        .pay-btn:focus {
+            outline: none;
+        }
+
+        .pay-btn:active {
+            background-color: #1e7e34;
+        }
+        .image-container:hover img {
+            transform: scale(1.1); /* Scale image by 1.2 times */
+            transition: transform 0.5s ease-in-out; 
+        }
+        .pay-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .pay-btn:hover {
+            background-color: #218838;
+        }
+
+        
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/studentindex/">MET'S Polytechnic Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                   
+                    <!-- Dropdown for Account -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/studentprofile/">Profile</a></li>
+                            <li><a class="dropdown-item" href="/studentdelete/">Delete Account</a></li>
+                            <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Student-Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/studentstafflist/">Staff Details</a>
+        <a href="/studentviewevent/">Upcoming Events</a>
+        <a href="/student_bookings/">Booked Events</a>
+        <a href="/event_winners_view/">Event Result</a>
+        <a href="/student_payment_history/">Payment History</a>
+        <a href="/student_event_assignments/">Events Co-Ordinators</a>
+        <a href="/student_feedbacksubmit/">Feedback</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content" style="margin-top:42px;">
+        <div class="container mt-4">
+            <form method="GET" action="" class="d-flex justify-content-end">
+               
+                <label style="color: #28a745;font-weight:900; margin-right:50px;font-size:20px;">Upcoming Events</label>
+                <!-- Category Filter -->
+                <select name="category" class="form-control w-25" style="max-width: 250px;">
+                    <option value="">Select Category</option>
+                    {% for category in categories %}
+                        <option value="{{ category }}" {% if category == request.GET.category %} selected {% endif %}>{{ category }}</option>
+                    {% endfor %}
+                </select>
+        
+                <!-- Free/Paid Filter -->
+                <select name="price" class="form-control w-25" style="max-width: 250px;">
+                    <option value="">Select Price</option>
+                    <option value="Free" {% if request.GET.price == 'Free' %} selected {% endif %}>Free</option>
+                    <option value="Paid" {% if request.GET.price == 'Paid' %} selected {% endif %}>Paid</option>
+                </select>
+        
+                <!-- Filter Button -->
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </form>
+        </div>
+        
+        <!-- Check if there are any events -->
+        {% if events %}
+            <div class="container mt-4">
+                {% for event in events %}
+                    <div class="event-card mb-4 d-flex flex-column flex-md-row">
+                        <!-- Event Image Display on the Left -->
+                        <div class="image-container mr-4 mb-3 mb-md-0" style="flex: 0 0 250px; padding: 10px; text-align: center;">
+                            {% if event.image %}
+                                <img src="{{ event.image.url }}" alt="{{ event.eventname }}" class="img-fluid" style="width: 230px; height: 230px; object-fit: fit; border-radius: 8px;">
+                            {% else %}
+                                <div style="background-color: #f1f1f1; height: 230px; display: flex; justify-content: center; align-items: center; border-radius: 8px;">
+                                    <p>No image available</p>
+                                </div>
+                            {% endif %}
+                        </div>
+        
+                        <!-- Event Details on the Right -->
+                        <div class="event-details" style="flex-grow: 1;">
+                            <h4 class="mb-2">{{ event.eventname }}</h4>
+                            <p><strong>Category:</strong> {{ event.event_category }}</p>
+                            <p><strong>Event Name:</strong> {{ event.event_name }}</p>
+                            <p><strong>Event Description:</strong> {{ event.events_description|truncatewords:20 }}</p>
+                            <p><strong>Event Date:</strong> {{ event.doe }}</p>
+        
+                            <div class="d-flex justify-content-between mt-3">
+                                <p><strong>Amount:</strong>
+                                    {% if event.version == "Free" %}
+                                        <span class="text-success font-weight-bold">Free</span>
+                                    {% else %}
+                                        &#8377;{{ event.amount }}
+                                    {% endif %}
+                                </p>
+                                <p><strong>Registration End Date:</strong> {{ event.rend }}</p>
+                            </div>
+        
+                            <p><strong>Result Date:</strong> {{ event.resultdate }}</p>
+        
+                            <!-- Pay Now Button -->
+                            <div class="text-center mt-3">
+                                {% if event.version == "Free" %}
+                                    <a href="{% url 'book_event' event.id %}" class="btn btn-success w-100" target="_blank">Book Event</a>
+                                {% else %}
+                                    <a href="" id="pay-button"  class="pay-button btn btn-primary w-100" data-event-id="{{ event.id }}" data-amount="{{ event.amount }}" data-event="{{event.event_name}}">Pay Now</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+          
+   
+
+
+{% endfor %}
+</div>
+{% else %}
+<p>No approved events available.</p>
+{% endif %}
+
+</div>
+ <!-- Razorpay's Javascript code. -->
+
+
+
+
+<script>
+
+    document.querySelectorAll('.pay-button').forEach(button => {
+        button.addEventListener('click', async function(e) {
+            e.preventDefault(); // Prevent default anchor behavior
+            
+            const amount = parseFloat(button.getAttribute('data-amount'));
+            const eventId = button.getAttribute('data-event-id');
+            const event_name = button.getAttribute('data-event');
+            
+            console.log('Starting payment process...');
+            console.log('Event ID:', eventId);
+            console.log('Amount:', amount);
+            console.log('Event name:', event_name);
+    
+            // Use absolute path
+            const url = `${window.location.origin}/initiate-payment/${eventId}/`;
+            console.log('Making request to:', url);
+    
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    credentials: 'same-origin'
+                });
+    
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Server error: ${response.status} ${errorText}`);
+                }
+    
+                const data = await response.json();
+                console.log('Payment initialization successful:', data);
+    
+                if (data.status === 'failure') {
+                    throw new Error(data.error);
+                }
+    
+                const options = {
+                    key: "rzp_test_X5OfG2jiWrAzSj",
+                    amount: amount * 100,
+                    currency: "INR",
+                    name: "MET'S  Events",
+                    description: event_name,
+                    order_id: data.order_id,
+                    handler: function(response) {
+                        console.log('Payment successful:', response);
+                        window.location.href = `/confirm-payment/${eventId}/${data.order_id}/${response.razorpay_payment_id}/${response.razorpay_signature}/`;
+                    },
+                    prefill: data.buyer,
+                    theme: {
+                        color: "#3399cc"
+                    }
+                };
+    
+                const rzp = new Razorpay(options);
+                rzp.on('payment.failed', function(response) {
+                    console.error('Razorpay payment failed:', response.error);
+                    alert(`Payment failed: ${response.error.description}`);
+                });
+                rzp.open();
+    
+            } catch (error) {
+                console.error('Payment initialization failed:', error);
+                alert(`Payment initialization failed: ${error.message}. Please try again.`);
+            }
+        });
+    });
+</script>
+
+
+       <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f8; /* Light gray background for the body */
+            width: 100%;
+        }
+        .navbar {
+            background: linear-gradient(to right, #006769, #4B164C); 
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: white;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ecf0f1 !important; /* Light hover effect */
+        }
+        .sidebar {
+            height: 100vh;
+            background-color: #006769; /* Darker blue for the sidebar */
+            color: white;
+            padding-top: 20px;
+            position: fixed;
+            width: 250px;
+        }
+        .sidebar a {
+            color: white;
+            padding: 12px 20px;
+            display: block;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #2ecc71; /* Soft green on hover */
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .dashboard-card {
+            border-radius: 10px;
+            background-color: #fff; /* White background for the cards */
+        }
+        .card-body {
+            font-size: 18px;
+        }
+        .card-header {
+            font-size: 22px;
+            background-color: #3498db; /* Blue background for card headers */
+            color: white;
+        }
+        .dropdown-menu {
+            background-color: #2980b9; /* Dark blue dropdown */
+            padding: 10px 0; /* Add padding to ensure space for each item */
+            width: 190px; /* Set a fixed width for the dropdown */
+            
+        }
+        .dropdown-item {
+            color: white;
+            padding: 12px 10px;
+            font-size: 16px;
+        }
+        .dropdown-item:hover {
+            background-color: #2ecc71; /* Green hover effect */
+        }
+
+
+
+        .success-checkmark {
+            color: #28a745;
+            font-size: 4rem;
+            animation: bounce 1s;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+        
+        .payment-card {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            border: none;
+        }
+        
+        .detail-row {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .detail-value {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .btn-return {
+            border-radius: 25px;
+            padding: 10px 30px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/studentindex/">MET'S Polytechnic Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                   
+                    <!-- Dropdown for Account -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/studentprofile/">Profile</a></li>
+                            <li><a class="dropdown-item" href="/studentdelete/">Delete Account</a></li>
+                            <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Student-Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/studentstafflist/">Staff Details</a>
+        <a href="/studentviewevent/">Upcoming Events</a>
+        <a href="/student_bookings/">Booked Events</a>
+        <a href="/event_winners_view/">Event Result</a>
+        <a href="/student_payment_history/">Payment History</a>
+        <a href="/student_event_assignments/">Events Co-Ordinators</a>
+        <a href="/student_feedbacksubmit/">Feedback</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content" style="margin-top: 43px;">
+        
+        <div class="container ">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div class="card payment-card">
+                        <div class="card-body p-4">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-check-circle success-checkmark"></i>
+                                <h2 class="mt-3 mb-4">Payment Successful!</h2>
+                            </div>
+    
+                            <div class="payment-details">
+                                <div class="detail-row row">
+                                    <div class="col-5 detail-label">Event Name</div>
+                                    <div class="col-7 detail-value">{{ event.event_name }}</div>
+                                </div>
+                                
+                                <div class="detail-row row">
+                                    <div class="col-5 detail-label">Booking Number</div>
+                                    <div class="col-7 detail-value">{{ booking_number }}</div>
+                                </div>
+                                
+                                <div class="detail-row row">
+                                    <div class="col-5 detail-label">Amount Paid</div>
+                                    <div class="col-7 detail-value">₹{{ amount }}</div>
+                                </div>
+    
+                                <div class="detail-row row">
+                                    <div class="col-5 detail-label">Payment ID</div>
+                                    <div class="col-7 detail-value">{{ Payment.razorpay_payment_id  }}</div>
+                                </div>
+    
+                                <div class="detail-row row">
+                                    <div class="col-5 detail-label">Student Name</div>
+                                    <div class="col-7 detail-value">{{ student.username }}</div>
+                                </div>
+    
+                                <div class="detail-row row">
+                                    <div class="col-5 detail-label">Email</div>
+                                    <div class="col-7 detail-value">{{ student.email }}</div>
+                                </div>
+    
+                                <div class="detail-row row">
+                                    <div class="col-5 detail-label">Payment Date</div>
+                                    <div class="col-7 detail-value">{{ payment_date|date:"F d, Y " }}</div>
+                                </div>
+                            </div>
+    
+                            <div class="text-center mt-4">
+                                <a href="/studentviewevent/" class="btn btn-primary btn-return">
+                                    <i class="fas fa-arrow-left me-2"></i>Back to Events
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!--<div class="text-center mt-4">
+                        <p class="text-muted">
+                            <i class="fas fa-envelope me-2"></i>A confirmation email has been sent to your registered email address
+                        </p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success - KG Events</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       
+    </style>
+</head>
+<body class="bg-light">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/staffreg.css' %}">
+    <style>
+        .image-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;  /* Make the image round */
+            object-fit: cover;   /* Ensure the image fits the circle */
+            display: none;       /* Hide the preview initially */
+        }
+    
+        .btn-green {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            display: inline-block;
+        }
+    
+        .btn-green:hover {
+            background-color: #218838;
+        }
+    
+        .scrollable-div {
+            width: 1380px;  /* Set a fixed width for the div */
+            height: 690px; /* Set a fixed height for the div */
+            overflow: auto; /* Enable both horizontal and vertical scrolling when content overflows */
+            
+        }
+    
+        .content {
+            height: 600px;  /* Make the content taller than the div to force scrolling */
+           
+            padding: 1px;
+        }
+        .scrollable-div::-webkit-scrollbar {
+            display: none; /* Hide the scrollbar */
+        }
+        .password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px; /* Ensure space for the icon */
+}
+
+.eye-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.eye-btn i {
+    font-size: 16px;
+    color: #555;
+}
+
+    </style>
+</head>
+<body>
+    <div class="scrollable-div">
+        <div class="content">
+    <div class="form-container">
+        <h2>Student Registration Form</h2>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" maxlength="35" required>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department</label>
+                <select id="department" name="department" onchange="updateRollNoPattern(); generateRollNo();">
+                    <option value="" disabled selected >Select Department</option>
+                    <option value="Information_Technology">Information Technology</option>
+                    <option value="Computer_Science">Computer Science</option>
+                    <option value="Computer_Technology">Computer Technology</option>
+                    <option value="Biotechnology">Biotechnology</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Environmental_Science">Environmental Science</option>
+                    <option value="Astronomy">Astronomy</option>
+                    <option value="Microbiology">Microbiology</option>
+                    <option value="Genetics">Genetics</option>
+                    <option value="Biochemistry">Biochemistry</option>
+                    <option value="Geology">Geology</option>
+                    <option value="Botany">Botany</option>
+                    <option value="Zoology">Zoology</option>
+                    <option value="Psychology">Psychology</option>
+                    <option value="Neuroscience">Neuroscience</option>
+                    <option value="Applied_Physics">Applied Physics</option>
+                    <option value="Astronomical_Sciences">Astronomical Sciences</option>
+                    <option value="Marine_Biology">Marine Biology</option>
+                    <option value="Forensic_Science">Forensic Science</option>
+                    <option value="Business_Administration">Business Administration</option>
+                    <option value="Commerce">Commerce</option>
+                    <option value="Economics">Economics</option>
+                    <option value="Accountancy">Accountancy</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Business_Law">Business Law</option>
+                    <option value="International_Business">International Business</option>
+                    <option value="Taxation">Taxation</option>
+                    <option value="Entrepreneurship">Entrepreneurship</option>
+                </select>
+            </div>
+            
+            <div class="division" style="display: flex;">
+            <div class="form-group">
+                <label for="semester">Semester</label>
+                <select id="semester" name="semester" style="width: 95px;">
+                    <option value="I">I</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                    <option value="V">V</option>
+                    <option value="VI">VI</option>
+                </select>
+            </div>
+            <div class="form-group" style="margin-left: 34px;">
+                <label for="rollno">Roll No:</label>
+                <input type="text" id="rollno" name="rollno" style="width: 376px;" maxlength="15" 
+                required pattern="^\d{2}[A-Z]{3,4}\d{3}$" title="Roll No format should be YYDEPTCODEXXX (DEPTCODE can be 3 or 4 uppercase letters)" onchange="validateRollNo()">                <div id="error-message" style="color: red; font-size: 12px;"></div>
+            </div>
+             </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender"> 
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Prefer Not to Say">Prefer Not to Say</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" maxlength="255" required>
+            </div>
+
+            
+            <div class="container mt-5">
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" maxlength="35" required 
+                               oninput="validatePassword()">
+                        <button type="button" onclick="togglePassword()" id="toggleBtn">
+                            <i id="toggleIcon" class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div id="error-messagepas" style="color: red; font-size: 12px;"></div>
+                </div>
+            </div>
+            <div class="container mt-5">
+                <h2>Upload and Preview Image</h2>
+            
+                <!-- File Input hidden, triggered by the button -->
+                <input type="file" name="pic" id="imageUpload" accept="image/*" onchange="previewImage()" hidden>
+            
+                <!-- Custom Button to trigger file input -->
+              <span style="display:flex; "> <label for="imageUpload" name="pic" class="btn-green" style="display:flex; height:auto;width:189px;justify-content:center;align-items:center">Choose Image</label>
+            
+                <!-- Image Preview -->
+                <img id="imagePreview" name="pic" class="image-preview mt-2" src="" alt="Image Preview" style="margin-left:25px"></span> 
+            
+            </div>
+            <div class="form-group">
+                <label for="mobile_no">Mobile No:</label>
+                <input type="tel" id="mobile_no" name="mobile_no" pattern="[0-9]{10}" maxlength="10">
+            </div>
+
+            <div class="but">
+                <button type="submit" class="submit-btn">Register</button>
+                <button type="reset" class="submit-btn">Clear</button>
+                <a href="/">Home</a>
+            </div>
+            </form> 
+            </div></div>
+            
+    </div>
+    <div class="photopath" style="width:60%;display:flex;justify-content:center;">
+        <img src="{% static 'img/student-register.jpg' %}" alt="staff Registration" width="450px" style="border-radius:120px 106px 360px 96px ;">
+    </div>
+    <script>
+        function previewImage() {
+            const file = document.getElementById('imageUpload').files[0];
+            const preview = document.getElementById('imagePreview');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';  // Show the image preview
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var errorMessage = document.getElementById("error-messagepas");
+        
+            // Regex pattern for password validation
+            var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,35}$/;
+        
+            if (!passwordPattern.test(password)) {
+                errorMessage.textContent = "Password must contain at least one uppercase letter, one lowercase letter, one special character, and be at least 8 characters long.";
+            } else {
+                errorMessage.textContent = "";  // Clear error message when password is valid
+            }
+        }
+    
+    
+        //password visible code 
+    
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+    
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+        const departmentCodes = {
+            "Information_Technology": "BBIT",
+            "Computer_Science": "BCS",
+            "Computer_Technology": "BCT",
+            "Biotechnology": "BBT",
+            "Physics": "BPHY",
+            "Chemistry": "BCHY",
+            "Mathematics": "BMTH",
+            "Environmental_Science": "BES",
+            "Astronomy": "BAST",
+            "Microbiology": "BMB",
+            "Genetics": "BGEN",
+            "Biochemistry": "BBC",
+            "Geology": "BGLY",
+            "Botany": "BBTNY",
+            "Zoology": "BZOO",
+            "Psychology": "BPSY",
+            "Neuroscience": "BNSC",
+            "Applied_Physics": "BAPH",
+            "Astronomical_Sciences": "BAS",
+            "Marine_Biology": "BMB",
+            "Forensic_Science": "BFS",
+            "Business_Administration": "BBA",
+            "Commerce": "BCM",
+            "Economics": "BECO",
+            "Accountancy": "BACC",
+            "Finance": "BFIN",
+            "Marketing": "BMKT",
+            "Business_Law": "BBL",
+            "International_Business": "BIB",
+            "Taxation": "BTAX",
+            "Entrepreneurship": "BENT"
+        };
+
+      
+        
+        // Department change event to auto-generate roll number
+        function updateRollNoPattern() {
+            const department = document.getElementById("department").value;
+            const rollnoInput = document.getElementById("rollno");
+            const departmentCode = departmentCodes[department] || "";
+        
+            // Get current year (last two digits)
+            const year = new Date().getFullYear().toString().slice(-2);
+        
+            // Generate the default roll number with department code and sequential number
+            if (departmentCode) {
+                const suggestedRollNo = `${year}${departmentCode.toUpperCase()}`; // Default to first roll number (001)
+                rollnoInput.value = suggestedRollNo;
+            }
+        }
+        
+        // Trigger roll number generation initially
+        updateRollNoPattern();
+        function validateRollNo() {
+            const rollno = document.getElementById("rollno").value;  // Get the roll number value
+            const rollnoInput = document.getElementById("rollno");  // Get the roll number input field
+        
+            // Regular expression for roll number format: 2 digits + 3 or 4 uppercase letters + 3 digits
+            const pattern = /^\d{2}[A-Z]{3,4}\d{3}$/;
+        
+            // Check if the roll number matches the pattern
+            if (!pattern.test(rollno)) {
+                // Set custom validity message to show error on input itself
+                rollnoInput.textContent("Invalid roll number format. It should be in the format YYDEPTCODEXXX (e.g., 23BBIT001).");
+            } else {
+                // Clear any custom validity message
+                rollnoInput.textContent("");  // This will remove the error message
+            }
+        }
+    
+
+    </script>
+</body>
+</html>

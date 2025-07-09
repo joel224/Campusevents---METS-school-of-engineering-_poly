@@ -1,0 +1,251 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f8; /* Light gray background for the body */
+            width: 100%;
+        }
+        .navbar {
+            background: linear-gradient(to right, #006769, #4B164C); 
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: white;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ecf0f1 !important; /* Light hover effect */
+        }
+        .sidebar {
+            height: 100vh;
+            background-color: #006769; /* Darker blue for the sidebar */
+            color: white;
+            padding-top: 20px;
+            position: fixed;
+            width: 250px;
+        }
+        .sidebar a {
+            color: white;
+            padding: 12px 20px;
+            display: block;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #2ecc71; /* Soft green on hover */
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .dashboard-card {
+            border-radius: 10px;
+            background-color: #fff; /* White background for the cards */
+        }
+        .card-body {
+            font-size: 18px;
+        }
+        .card-header {
+            font-size: 22px;
+            background-color: #3498db; /* Blue background for card headers */
+            color: white;
+        }
+        .dropdown-menu {
+            background-color: #2980b9; /* Dark blue dropdown */
+            padding: 10px 0; /* Add padding to ensure space for each item */
+            width: 190px; /* Set a fixed width for the dropdown */
+            
+        }
+        .dropdown-item {
+            color: white;
+            padding: 12px 10px;
+            font-size: 16px;
+        }
+        .dropdown-item:hover {
+            background-color: #2ecc71; /* Green hover effect */
+        }
+        .feedback-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .star-rating input {
+            display: none;
+        }
+        .star-rating label {
+            font-size: 30px;
+            color: #d3d3d3;  /* Gray color for unselected stars */
+            cursor: pointer;
+        }
+        .star-rating input:checked ~ label {
+            color: gold;  /* Gold color for selected stars */
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: gold;  /* Hover effect - gold color */
+        }
+        .star-rating input:checked + label {
+            color: gold;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/studentindex/">MET'S Polytechnic Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                   
+                    <!-- Dropdown for Account -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/studentprofile/">Profile</a></li>
+                            <li><a class="dropdown-item" href="/studentdelete/">Delete Account</a></li>
+                            <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Student-Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/studentstafflist/">Staff Details</a>
+        <a href="/studentviewevent/">Upcoming Events</a>
+        <a href="/student_bookings/">Booked Events</a>
+        <a href="/event_winners_view/">Event Result</a>
+        <a href="/student_payment_history/">Payment History</a>
+        <a href="/student_event_assignments/">Events Co-Ordinators</a>
+        <a href="/student_feedbacksubmit/">Feedback</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Feedback Form -->
+<div class="container mt-5">
+    <div class="feedback-container">
+        <h2 class="mb-4 text-center">Submit Your Feedback</h2>
+        <form id="feedbackForm" action="" method="post">
+           {% csrf_token %}
+           
+            <!-- Feedback Text Area -->
+            <div class="mb-3">
+                <label for="feedback" class="form-label">Your Feedback</label>
+                <textarea class="form-control" name="feedback_text" id="feedback" rows="4" placeholder="Enter your feedback" required></textarea>
+            </div>
+
+            <!-- Rating -->
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <div class="star-rating">
+                    <input type="radio" name="rating" id="star1" value="1">
+                    <label for="star1">&#9733;</label>
+
+                    <input type="radio" name="rating" id="star2" value="2">
+                    <label for="star2">&#9733;</label>
+
+                    <input type="radio" name="rating" id="star3" value="3">
+                    <label for="star3">&#9733;</label>
+
+                    <input type="radio" name="rating" id="star4" value="4">
+                    <label for="star4">&#9733;</label>
+
+                    <input type="radio" name="rating" id="star5" value="5">
+                    <label for="star5">&#9733;</label>
+                </div>
+            </div>
+
+            <!-- Submit and Reset Buttons -->
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-custom">Submit Feedback</button>
+                <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+            </div>
+        </form>
+
+        <!-- Home Button -->
+        <div class="mt-3 text-center">
+            <button class="btn btn-outline-primary" onclick="goHome()">Go to Home</button>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    // Handle star selection
+    const starInputs = document.querySelectorAll('input[name="rating"]');
+    const starLabels = document.querySelectorAll('.star-rating label');
+
+    starInputs.forEach((input, index) => {
+        input.addEventListener('change', () => {
+            // Reset all labels to gray color
+            starLabels.forEach(label => label.style.color = '#d3d3d3');
+            // Highlight selected stars
+            for (let i = 0; i <= index; i++) {
+                starLabels[i].style.color = 'gold';
+            }
+        });
+    });
+
+    // Reset form function
+    function resetForm() {
+        document.getElementById('feedbackForm').reset();
+        starLabels.forEach(label => label.style.color = '#d3d3d3');
+    }
+
+    // Go to Home function
+    function goHome() {
+        window.location.href = "/studentindex/";  // Replace '/' with your home page URL
+    }
+
+
+</script>
+
+        </div>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

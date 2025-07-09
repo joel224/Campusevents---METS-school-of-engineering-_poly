@@ -1,0 +1,159 @@
+{
+  "calendar_data": {
+    "november_2024": {
+      "month_info": {
+        "instructional_days": 5,
+        "notes": "Limited instructional days"
+      },
+      "events": [
+        {
+          "date": "2024-11-25",
+          "description": "Commencement of sixth semester classes",
+          "status": "busy"
+        }
+      ]
+    },
+    "december_2024": {
+      "month_info": {
+        "instructional_days": 17,
+        "notes": "Holidays affect instructional days"
+      },
+      "events": [
+        {
+          "date": "2024-12-01",
+          "description": "World Aids Day",
+          "status": "busy"
+        },
+        {
+          "date": "2024-12-02",
+          "description": "Commencement of Sixth Semester Internship",
+          "status": "busy"
+        },
+        {
+          "date": "2024-12-02",
+          "description": "World Pollution Prevention Day",
+          "status": "busy"
+        },
+        {
+          "date_range": {
+            "start": "2024-12-20",
+            "end": "2024-12-30"
+          },
+          "description": "Polytechnic College X'mas Holidays",
+          "status": "not busy",
+          "holiday_considerable": true
+        }
+      ]
+    },
+    "january_2025": {
+      "month_info": {
+        "instructional_days": 22
+      },
+      "events": [
+        {
+          "date": "2025-01-06",
+          "description": "Formative Assessment No.1",
+          "status": "busy"
+        },
+        {
+          "date": "2025-01-08",
+          "description": "Publication of attendance of the month of November & December",
+          "status": "busy"
+        },
+        {
+          "date": "2025-01-20",
+          "description": "Summative Assessment No.1",
+          "status": "busy"
+        },
+        {
+          "date": "2025-01-26",
+          "description": "Republic Day",
+          "status": "busy"
+        }
+      ]
+    },
+    "february_2025": {
+      "month_info": {
+        "instructional_days": 19
+      },
+      "events": [
+        {
+          "date": "2025-02-07",
+          "description": "Publication of attendance of the month of January",
+          "status": "busy"
+        },
+        {
+          "date": "2025-02-11",
+          "description": "Formative Assessment No.2",
+          "status": "busy"
+        },
+        {
+          "date": "2025-02-18",
+          "description": "Summative Assessment No.2",
+          "status": "busy"
+        }
+      ]
+    },
+    "march_2025": {
+      "month_info": {
+        "instructional_days": 15
+      },
+      "events": [
+        {
+          "date": "2025-03-07",
+          "description": "Publication of attendance of the month of February",
+          "status": "busy"
+        },
+        {
+          "date": "2025-03-07",
+          "description": "Formative Assessment No.3",
+          "status": "busy"
+        },
+        {
+          "date": "2025-03-17",
+          "description": "Model exam for S6",
+          "status": "busy"
+        },
+        {
+          "date": "2025-03-21",
+          "description": "Last working day for S6",
+          "status": "busy"
+        },
+        {
+          "date": "2025-03-26",
+          "description": "Publication of internal marks and consolidated attendance statement of S6",
+          "status": "busy"
+        }
+      ]
+    },
+    "april_2025": {
+      "month_info": { 
+        "instructional_days": 0,
+        "notes": "Important dates because of examination" 
+      },
+      "events": [ 
+        { 
+          "date_range": {
+            "start": "2025-04-07",
+            "end": "2025-04-30"
+          },
+          "description": "End Semester Examination",
+          "status": "busy"
+        }
+      ]
+    },
+    "may_2025": {
+      "month_info": {
+        "instructional_days": null,
+        "notes": "No instructional days data"
+      },
+      "events": [
+        {
+          "date": "2025-05-30",
+          "description": "Sixth semester Internship ends",
+          "status": "busy"
+        }
+      ]
+    }
+  }
+}
