@@ -13,5 +13,7 @@ The Technical issue was using details of every department required too much toke
 so i solved this using my own function with a logic that :
 it will check if there is working days ,
 it will check by using a an equation that will substract the woring days from holidays while again substation of existing events +2(days for gathering funds , decorationsetc)
+equation has still a bit more to explain .
 
+ but thankyou for reading 
   
